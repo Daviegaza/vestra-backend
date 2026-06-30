@@ -1,0 +1,596 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum UserRole {
+  buyer
+  seller
+  agent
+  landlord
+  tenant
+  admin
+}
+
+enum RoleStatus {
+  active
+  pending
+  suspended
+}
+
+enum PropertyType {
+  residential
+  commercial
+  land
+  industrial
+  agricultural
+  student_housing
+  short_stay
+}
+
+enum ListingType {
+  sale
+  rent
+  lease
+}
+
+enum PropertyStatus {
+  active
+  pending
+  sold
+  rented
+  suspended
+}
+
+enum EscrowStatus {
+  initiated
+  deposit_paid
+  balance_paid
+  completed
+  cancelled
+  refunded
+  disputed
+}
+
+enum UnitStatus {
+  vacant
+  occupied
+  maintenance
+}
+
+enum MaintenanceStatus {
+  reported
+  assigned
+  in_progress
+  completed
+  cancelled
+}
+
+enum MaintenancePriority {
+  low
+  medium
+  high
+  emergency
+}
+
+enum LeadStatus {
+  new
+  contacted
+  qualified
+  closed
+  lost
+}
+
+enum LeaseStatus {
+  draft
+  active
+  expiring_soon
+  expired
+  terminated
+}
+
+enum PaymentStatus {
+  pending
+  completed
+  failed
+  refunded
+}
+
+enum NotificationType {
+  info
+  success
+  warning
+  error
+  payment
+  verification
+  message
+  invite
+}
+
+enum InviteStatus {
+  pending
+  accepted
+  declined
+  expired
+}
+
+enum SubscriptionTier {
+  free
+  starter
+  plus
+  pro
+  elite
+  estate
+  buyer_verified
+  buyer_pro
+  chama_group
+  chama_cooperative
+}
+
+enum SubscriptionStatus {
+  active
+  trialing
+  past_due
+  cancelled
+  expired
+}
+
+enum PaymentMethod {
+  mpesa
+  airtel_money
+  card
+  bank_transfer
+  pesalink
+  equitel
+  paypal
+  flutterwave
+  intasend
+  cash
+}
+
+enum ExtensionStatus {
+  pending
+  approved
+  declined
+  expired
+}
+
+enum ExtensionKind {
+  rent
+  deposit
+  subscription
+  escrow
+  other
+}
+
+enum ChamaRole {
+  founder
+  treasurer
+  member
+}
+
+enum ChamaStatus {
+  active
+  paused
+  closed
+}
+
+model User {
+  id              String        @id @default(cuid())
+  email           String        @unique
+  fullName        String
+  phone           String
+  hashedPassword  String
+  activeRole      UserRole      @default(buyer)
+  avatar          String?
+  isVerified      Boolean       @default(false)
+  isKycVerified   Boolean       @default(false)
+  location        String?
+  bio             String?
+  createdAt       DateTime      @default(now())
+  updatedAt       DateTime      @updatedAt
+
+  roles            RoleProfile[]
+  ownedProperties  Property[]    @relation("OwnedProperties")
+  agentListings    Property[]    @relation("AgentListings")
+  sentMessages     Message[]     @relation("MessagesSent")
+  receivedMessages Message[]     @relation("MessagesReceived")
+  notifications    Notification[]
+  buyerEscrows     Escrow[]      @relation("BuyerEscrows")
+  sellerEscrows    Escrow[]      @relation("SellerEscrows")
+  ownedUnits       RentalUnit[]
+  tenantLeases     Lease[]       @relation("TenantLeases")
+  landlordLeases   Lease[]       @relation("LandlordLeases")
+  sentInvites      TenantInvite[] @relation("InvitesSent")
+  receivedInvites  TenantInvite[] @relation("InvitesReceived")
+  subscriptions    Subscription[]
+  extensionRequests PaymentExtension[] @relation("ExtensionsRequested")
+  extensionApprovals PaymentExtension[] @relation("ExtensionsApproved")
+  chamaMemberships  ChamaMember[]
+  chamaContributions ChamaContribution[]
+  leads            Lead[]
+  commissions      Commission[]
+  receipts         RentReceipt[] @relation("TenantReceipts")
+  agentProfile     AgentProfile?
+}
+
+model RoleProfile {
+  id          String     @id @default(cuid())
+  userId      String
+  role        UserRole
+  status      RoleStatus @default(active)
+  meta        Json?
+  activatedAt DateTime   @default(now())
+  user        User       @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, role])
+  @@index([userId])
+}
+
+model AgentProfile {
+  id               String   @id @default(cuid())
+  userId           String   @unique
+  agencyName       String
+  licenseNumber    String   @unique
+  badgeLevel       String   @default("bronze")
+  rating           Float    @default(0)
+  reviewCount      Int      @default(0)
+  bio              String?
+  specialties      String[]
+  city             String?
+  county           String?
+  subscriptionTier String   @default("free")
+  createdAt        DateTime @default(now())
+
+  user             User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model Property {
+  id            String         @id @default(cuid())
+  ownerId       String
+  agentId       String?
+  title         String
+  description   String
+  propertyType  PropertyType
+  listingType   ListingType
+  status        PropertyStatus @default(active)
+  price         Decimal        @db.Decimal(14, 2)
+  currency      String         @default("KES")
+  bedrooms      Int            @default(0)
+  bathrooms     Int            @default(0)
+  sizeSqft      Int            @default(0)
+  yearBuilt     Int?
+  address       String
+  city          String
+  county        String
+  country       String         @default("Kenya")
+  lat           Float?
+  lng           Float?
+  amenities     String[]
+  images        String[]
+  trustScore    Int            @default(0)
+  isVerified    Boolean        @default(false)
+  isFeatured    Boolean        @default(false)
+  views         Int            @default(0)
+  inquiries     Int            @default(0)
+  createdAt     DateTime       @default(now())
+  updatedAt     DateTime       @updatedAt
+
+  owner         User           @relation("OwnedProperties", fields: [ownerId], references: [id])
+  agent         User?          @relation("AgentListings", fields: [agentId], references: [id])
+  leads         Lead[]
+  escrows       Escrow[]
+
+  @@index([ownerId])
+  @@index([propertyType])
+  @@index([listingType])
+  @@index([status])
+}
+
+model RentalUnit {
+  id          String      @id @default(cuid())
+  landlordId  String
+  title       String
+  address     String
+  city        String
+  bedrooms    Int
+  bathrooms   Int
+  rentAmount  Decimal     @db.Decimal(10, 2)
+  currency    String      @default("KES")
+  status      UnitStatus  @default(vacant)
+  image       String?
+  createdAt   DateTime    @default(now())
+
+  landlord    User        @relation(fields: [landlordId], references: [id])
+  leases      Lease[]
+  maintenance MaintenanceRequest[]
+  receipts    RentReceipt[]
+  invites     TenantInvite[]
+}
+
+model TenantInvite {
+  id            String       @id @default(cuid())
+  unitId        String
+  landlordId    String
+  /// Phone or email used to find an existing user.
+  tenantEmail   String?
+  tenantPhone   String?
+  /// Resolved when user has an account.
+  tenantUserId  String?
+  rentAmount    Decimal      @db.Decimal(10, 2)
+  deposit       Decimal      @db.Decimal(10, 2)
+  startDate     DateTime
+  endDate       DateTime
+  terms         String       @default("")
+  status        InviteStatus @default(pending)
+  createdAt     DateTime     @default(now())
+  respondedAt   DateTime?
+
+  unit          RentalUnit   @relation(fields: [unitId], references: [id], onDelete: Cascade)
+  landlord      User         @relation("InvitesSent", fields: [landlordId], references: [id])
+  tenantUser    User?        @relation("InvitesReceived", fields: [tenantUserId], references: [id])
+
+  @@index([tenantUserId, status])
+  @@index([tenantEmail])
+  @@index([tenantPhone])
+}
+
+model Lease {
+  id               String      @id @default(cuid())
+  unitId           String
+  landlordId       String
+  tenantId         String
+  rentAmount       Decimal     @db.Decimal(10, 2)
+  currency         String      @default("KES")
+  deposit          Decimal     @db.Decimal(10, 2)
+  startDate        DateTime
+  endDate          DateTime
+  status           LeaseStatus @default(draft)
+  terms            String      @default("")
+  signedByLandlord Boolean     @default(false)
+  signedByTenant   Boolean     @default(false)
+  createdAt        DateTime    @default(now())
+
+  unit             RentalUnit  @relation(fields: [unitId], references: [id])
+  landlord         User        @relation("LandlordLeases", fields: [landlordId], references: [id])
+  tenant           User        @relation("TenantLeases", fields: [tenantId], references: [id])
+}
+
+model RentReceipt {
+  id            String   @id @default(cuid())
+  unitId        String
+  tenantId      String
+  landlordId    String?
+  amount        Decimal  @db.Decimal(10, 2)
+  currency      String   @default("KES")
+  period        String
+  paidAt        DateTime @default(now())
+  paymentMethod String
+  mpesaRef      String?
+
+  unit          RentalUnit @relation(fields: [unitId], references: [id])
+  tenant        User       @relation("TenantReceipts", fields: [tenantId], references: [id])
+}
+
+model MaintenanceRequest {
+  id          String              @id @default(cuid())
+  unitId      String
+  tenantId    String?
+  title       String
+  description String
+  priority    MaintenancePriority @default(medium)
+  status      MaintenanceStatus   @default(reported)
+  createdAt   DateTime            @default(now())
+  updatedAt   DateTime            @updatedAt
+
+  unit        RentalUnit          @relation(fields: [unitId], references: [id])
+}
+
+model Lead {
+  id         String     @id @default(cuid())
+  agentId    String
+  propertyId String?
+  name       String
+  email      String
+  phone      String
+  message    String
+  status     LeadStatus @default(new)
+  createdAt  DateTime   @default(now())
+
+  agent      User       @relation(fields: [agentId], references: [id])
+  property   Property?  @relation(fields: [propertyId], references: [id])
+}
+
+model Commission {
+  id               String        @id @default(cuid())
+  agentId          String
+  propertyTitle    String
+  salePrice        Decimal       @db.Decimal(14, 2)
+  commissionRate   Float
+  commissionAmount Decimal       @db.Decimal(12, 2)
+  currency         String        @default("KES")
+  status           PaymentStatus @default(pending)
+  closedAt         DateTime      @default(now())
+
+  agent            User          @relation(fields: [agentId], references: [id])
+}
+
+model Escrow {
+  id            String       @id @default(cuid())
+  propertyId    String
+  propertyTitle String
+  buyerId       String
+  sellerId      String
+  amount        Decimal      @db.Decimal(14, 2)
+  currency      String       @default("KES")
+  status        EscrowStatus @default(initiated)
+  createdAt     DateTime     @default(now())
+  updatedAt     DateTime     @updatedAt
+
+  property      Property     @relation(fields: [propertyId], references: [id])
+  buyer         User         @relation("BuyerEscrows", fields: [buyerId], references: [id])
+  seller        User         @relation("SellerEscrows", fields: [sellerId], references: [id])
+}
+
+model Message {
+  id         String   @id @default(cuid())
+  senderId   String
+  receiverId String
+  subject    String
+  content    String
+  read       Boolean  @default(false)
+  createdAt  DateTime @default(now())
+
+  sender     User     @relation("MessagesSent", fields: [senderId], references: [id])
+  receiver   User     @relation("MessagesReceived", fields: [receiverId], references: [id])
+
+  @@index([receiverId])
+}
+
+model Notification {
+  id        String           @id @default(cuid())
+  userId    String
+  title     String
+  message   String
+  type      NotificationType @default(info)
+  read      Boolean          @default(false)
+  createdAt DateTime         @default(now())
+
+  user      User             @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+}
+
+model PaymentExtension {
+  id            String          @id @default(cuid())
+  /// Who's asking (tenant for rent, buyer for escrow, etc.).
+  requesterId   String
+  /// Who decides (landlord for rent, seller for escrow, admin for subscription).
+  approverId    String?
+  /// Optional unit link for rent extensions.
+  unitId        String?
+  kind          ExtensionKind   @default(rent)
+  amount        Decimal         @db.Decimal(12, 2)
+  currency      String          @default("KES")
+  originalDue   DateTime
+  /// New due date the requester proposes.
+  requestedDue  DateTime
+  reason        String
+  status        ExtensionStatus @default(pending)
+  decisionAt    DateTime?
+  decisionNote  String?
+  createdAt     DateTime        @default(now())
+  updatedAt     DateTime        @updatedAt
+
+  requester     User            @relation("ExtensionsRequested", fields: [requesterId], references: [id])
+  approver      User?           @relation("ExtensionsApproved", fields: [approverId], references: [id])
+
+  @@index([requesterId, status])
+  @@index([approverId, status])
+}
+
+model Subscription {
+  id           String             @id @default(cuid())
+  userId       String
+  /// Which role this subscription applies to (agent/landlord/buyer/chama).
+  role         UserRole
+  tier         SubscriptionTier
+  status       SubscriptionStatus @default(active)
+  priceKes     Decimal            @db.Decimal(10, 2)
+  /// Renewal cadence in days (30 default).
+  periodDays   Int                @default(30)
+  /// Auto-renew at expiry.
+  autoRenew    Boolean            @default(true)
+  startedAt    DateTime           @default(now())
+  expiresAt    DateTime
+  cancelledAt  DateTime?
+  /// Payment method used for the latest charge.
+  paymentMethod PaymentMethod    @default(mpesa)
+  /// Provider receipt reference (M-Pesa code, card auth, bank ref, etc.).
+  paymentRef    String?
+  /// Legacy M-Pesa receipt — kept for back-compat.
+  mpesaRef     String?
+  createdAt    DateTime           @default(now())
+  updatedAt    DateTime           @updatedAt
+
+  user         User               @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, role])
+  @@index([userId, status])
+}
+
+model Chama {
+  id          String      @id @default(cuid())
+  name        String
+  description String
+  targetKes   Decimal     @db.Decimal(14, 2)
+  monthlyContribution Decimal @db.Decimal(10, 2)
+  status      ChamaStatus @default(active)
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
+
+  members        ChamaMember[]
+  contributions  ChamaContribution[]
+  properties     ChamaProperty[]
+}
+
+model ChamaMember {
+  id          String    @id @default(cuid())
+  chamaId     String
+  userId      String
+  role        ChamaRole @default(member)
+  shares      Int       @default(1)
+  joinedAt    DateTime  @default(now())
+
+  chama       Chama     @relation(fields: [chamaId], references: [id], onDelete: Cascade)
+  user        User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([chamaId, userId])
+  @@index([userId])
+}
+
+model ChamaContribution {
+  id          String        @id @default(cuid())
+  chamaId     String
+  memberId    String
+  amount      Decimal       @db.Decimal(10, 2)
+  paymentMethod PaymentMethod @default(mpesa)
+  paymentRef  String?
+  period      String
+  paidAt      DateTime      @default(now())
+
+  chama       Chama         @relation(fields: [chamaId], references: [id], onDelete: Cascade)
+  member      User          @relation(fields: [memberId], references: [id])
+
+  @@index([chamaId, paidAt])
+}
+
+model ChamaProperty {
+  id          String   @id @default(cuid())
+  chamaId     String
+  title       String
+  address     String
+  costKes     Decimal  @db.Decimal(14, 2)
+  acquiredAt  DateTime @default(now())
+  notes       String?
+
+  chama       Chama    @relation(fields: [chamaId], references: [id], onDelete: Cascade)
+}
+
+model BlogPost {
+  id           String   @id @default(cuid())
+  slug         String   @unique
+  title        String
+  excerpt      String
+  content      String
+  author       String
+  authorAvatar String?
+  category     String
+  image        String?
+  publishedAt  DateTime @default(now())
+  readTime     String?
+}
