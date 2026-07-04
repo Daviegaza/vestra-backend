@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Vestra Launch Checklist — Legalities, Licenses, Costs</title>
+<style>
+  @page { size: A4; margin: 18mm 15mm; }
+  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; font-size: 10.5pt; line-height: 1.45; color: #1a1a1a; }
+  h1 { font-size: 22pt; color: #059669; border-bottom: 3px solid #059669; padding-bottom: 6pt; margin: 0 0 4pt 0; }
+  h2 { font-size: 14pt; color: #047857; border-bottom: 1px solid #ccc; padding-bottom: 3pt; margin-top: 18pt; page-break-after: avoid; }
+  h3 { font-size: 11.5pt; color: #065f46; margin-top: 12pt; margin-bottom: 4pt; page-break-after: avoid; }
+  h4 { font-size: 10.5pt; margin: 8pt 0 2pt 0; page-break-after: avoid; }
+  p { margin: 3pt 0; }
+  ul, ol { margin: 3pt 0 6pt 18pt; padding: 0; }
+  li { margin: 1.5pt 0; }
+  table { width: 100%; border-collapse: collapse; margin: 6pt 0; font-size: 9.5pt; page-break-inside: avoid; }
+  th, td { border: 1px solid #999; padding: 4pt 6pt; text-align: left; vertical-align: top; }
+  th { background: #d1fae5; font-weight: 600; }
+  tr:nth-child(even) td { background: #f9fafb; }
+  .subtitle { color: #666; font-size: 10pt; margin: 0 0 12pt 0; }
+  .callout { background: #fef3c7; border-left: 4px solid #f59e0b; padding: 6pt 10pt; margin: 8pt 0; font-size: 9.5pt; }
+  .risk { background: #fee2e2; border-left: 4px solid #dc2626; padding: 6pt 10pt; margin: 8pt 0; font-size: 9.5pt; }
+  .info { background: #dbeafe; border-left: 4px solid #2563eb; padding: 6pt 10pt; margin: 8pt 0; font-size: 9.5pt; }
+  .money { font-family: "SF Mono", Consolas, monospace; white-space: nowrap; }
+  .critical { color: #dc2626; font-weight: 600; }
+  .high { color: #ea580c; font-weight: 600; }
+  .medium { color: #ca8a04; font-weight: 600; }
+  .low { color: #16a34a; font-weight: 600; }
+  .toc { columns: 2; column-gap: 12pt; font-size: 9.5pt; }
+  .toc a { color: #047857; text-decoration: none; }
+  .footer-note { font-size: 8.5pt; color: #666; font-style: italic; margin-top: 24pt; border-top: 1px solid #ccc; padding-top: 6pt; }
+  .page-break { page-break-before: always; }
+  .summary-box { background: #ecfdf5; border: 2px solid #059669; padding: 8pt 12pt; margin: 10pt 0; border-radius: 4pt; }
+  .grand-total { background: #059669; color: white; font-weight: 700; }
+  .grand-total td { border-color: #047857; }
+</style>
+</head>
+<body>
+
+<h1>Vestra Launch Checklist</h1>
+<p class="subtitle">Everything required to take Vestra (Kenya-first proptech) from code to live paying users — legalities, licenses, costs, timeline. Prepared 2026-07-04.</p>
+
+<div class="summary-box">
+<strong>Bottom line.</strong> Minimum viable launch requires <strong>~KES 8.9M (~USD 68,500) upfront</strong> plus <strong>~KES 1.3M/mo (~USD 10,000) recurring</strong> across legal, compliance, banking, infrastructure, engineering, operations, and marketing. Critical path is <strong>4-6 months</strong>, bounded by partner-bank trust account (3-6 months) and ODPC registration (2-4 weeks) — both hard legal walls. Everything else can parallelize.
+</div>
+
+<h2>Table of contents</h2>
+<div class="toc">
+1. Executive summary<br>
+2. Company formation &amp; corporate<br>
+3. Data protection (ODPC + DPO)<br>
+4. Banking &amp; payment licences<br>
+5. Communications compliance (CAK)<br>
+6. Tax registration &amp; ongoing filing<br>
+7. Sector-specific licences<br>
+8. Consumer-facing legal documents<br>
+9. Insurance<br>
+10. Intellectual property<br>
+11. Hosting &amp; infrastructure<br>
+12. Third-party integrations<br>
+13. Remaining engineering work<br>
+14. Team &amp; operations<br>
+15. Content &amp; data acquisition<br>
+16. Marketing &amp; brand<br>
+17. Fundraising &amp; capital<br>
+18. Total cost summary<br>
+19. Timeline &amp; critical path<br>
+20. Risks &amp; contingencies
+</div>
+
+<h2 id="s1">1. Executive summary</h2>
+<p>Vestra targets the transactional layer of Kenyan real estate — verified escrow, KRA-compliant rent, agent trust graph — a moat none of Property24 KE, BuyRentKenya, HassConsult, Optiven, or Username currently occupies. Business launch requires eleven categories of parallel work: five with hard legal gates (company registration, ODPC, partner-bank trust, KRA tax, insurance) and six that can compress with capital (engineering, ops, content, marketing, fundraising, integrations).</p>
+<p>Assumptions in this document: (a) founding team is 2-3 Kenyan citizens; (b) starting capital ≥ KES 10M; (c) launch scope is Nairobi + Kiambu counties, rent + sale + escrow verticals, no cross-border, no credit (defer DCP licence to Phase 2). Diaspora vertical launches month 9.</p>
+
+<h2 id="s2">2. Company formation &amp; corporate</h2>
+
+<h3>2.1 Private limited company registration</h3>
+<ul>
+  <li>Register a Private Limited Company via <strong>eCitizen BRS portal</strong>. Requirements: proposed name (3 alternatives), memorandum + articles of association (BRS templates OK), registered office address, minimum 1 director, minimum 1 shareholder. Directors must have KRA PINs.</li>
+  <li>Choose objects broadly — "provision of technology platforms for real-estate transactions, escrow services, digital rental management, related property services".</li>
+  <li>Beneficial-ownership disclosure filed at incorporation (Companies (Beneficial Ownership) Regulations 2020).</li>
+</ul>
+<p><strong>Cost:</strong> KES 10,650 (name reservation + registration) + advocate drafting if not using templates KES 25,000-75,000.</p>
+<p><strong>Timeline:</strong> 5-14 working days.</p>
+
+<h3>2.2 Cap table + shareholders' agreement</h3>
+<ul>
+  <li>Shareholders' agreement (SHA) covering vesting, drag/tag, ROFR, board composition, reserved matters — non-negotiable before first external hire or investor. Draft with corporate counsel.</li>
+  <li>Employee Share Option Plan (ESOP) trust set up before first hire — typically 10-15% pool.</li>
+</ul>
+<p><strong>Cost:</strong> SHA drafting KES 150,000-350,000. ESOP setup KES 100,000-250,000.</p>
+
+<h3>2.3 Business permit (Nairobi County)</h3>
+<ul>
+  <li>Single Business Permit at ward level from Nairobi City County (or the county of registered office). Category = "Professional / Consultancy / Technology".</li>
+</ul>
+<p><strong>Cost:</strong> KES 15,000-50,000/yr depending on office size + ward.</p>
+<p><strong>Renewal:</strong> annual.</p>
+
+<h3>2.4 Registered office + physical address</h3>
+<ul>
+  <li>Registered office required at incorporation. Coworking space (Nairobi Garage, iHub, Workstyle) satisfies this — approximately KES 40,000-90,000/mo for 3-4 desks + registered address.</li>
+</ul>
+
+<h2 id="s3">3. Data protection (ODPC + DPO)</h2>
+<p>Under the <strong>Data Protection Act 2019</strong> plus <strong>Data Protection (General) Regulations 2021</strong>, Vestra is a Data Controller AND Processor from day one — financial services + sensitive data (national IDs, KRA PINs, bank details) both trigger registration.</p>
+
+<h3>3.1 ODPC registration</h3>
+<ul>
+  <li>Register as <strong>Data Controller</strong> AND <strong>Data Processor</strong> via <a href="https://www.odpc.go.ke">odpc.go.ke</a> portal.</li>
+  <li>Documents: KRA PIN certificate, incorporation certificate, DPIA summary, list of processing activities, third-party processors list.</li>
+  <li>Fee tiers by turnover: micro/small KES 4,000, medium KES 20,000, large KES 40,000. Vestra starts at micro/small.</li>
+</ul>
+<p><strong>Cost:</strong> KES 4,000-8,000 (both roles).</p>
+<p><strong>Timeline:</strong> 2-6 weeks.</p>
+<p><strong>Renewal:</strong> every 24 months.</p>
+
+<h3>3.2 Data Protection Officer (DPO)</h3>
+<ul>
+  <li>Financial-services + systematic-monitoring-at-scale designation makes DPO <strong>mandatory</strong>, not optional.</li>
+  <li>Options: (a) fractional DPO service (KES 150,000-300,000/mo), (b) in-house senior privacy counsel (KES 500,000-1,000,000/mo). <strong>Recommend fractional for first 12 months.</strong></li>
+</ul>
+
+<h3>3.3 Data Protection Impact Assessment (DPIA)</h3>
+<ul>
+  <li>Required before processing begins for high-risk categories: KYC biometric, financial transactions, tenant scoring. Standard 15-30 page document per activity.</li>
+</ul>
+<p><strong>Cost:</strong> KES 150,000-400,000 (one-time, with DPO or counsel).</p>
+
+<h3>3.4 Privacy operations</h3>
+<ul>
+  <li><strong>72-hour breach notification runbook</strong> — incident detection, ODPC portal submission form, subject-notification templates.</li>
+  <li>Subject Access Request (SAR) response workflow — 30-day statutory response.</li>
+  <li>Records of Processing Activities (ROPA) register — living document.</li>
+  <li>Data Processing Agreements (DPAs) signed with every processor: Smile Identity, IntaSend, Flutterwave, MapTiler, Cohere, Deepgram, Anthropic, Sentry, PostHog, Grafana, Cloudflare, Bunny.net.</li>
+</ul>
+
+<div class="risk"><strong>Enforcement risk.</strong> ODPC has issued fines: Roma School KES 4.55M, Mulla Pride KES 2.975M (upheld by High Court), Casa Vera KES 1.85M. Amendment Bill 2025 proposes cap change from "whichever lower" to "whichever higher" — potentially unlimited 1%-of-turnover fines.</div>
+
+<h2 id="s4">4. Banking &amp; payment licences</h2>
+
+<h3>4.1 Business bank account</h3>
+<ul>
+  <li>Operating account at a Tier-1 KE bank (Equity, KCB, Co-op, NCBA). Not the same institution as the trust-account partner (segregation).</li>
+</ul>
+<p><strong>Cost:</strong> KES 0-5,000 setup; monthly maintenance KES 500-2,000.</p>
+
+<h3>4.2 Partner-bank trust account (BLOCKING)</h3>
+<p><span class="critical">Critical:</span> Under the <strong>National Payment System Act 2011</strong>, holding client funds without a bank-operated trust account is a criminal offence for unlicensed entities. This is the single hardest blocker to Vestra's escrow product.</p>
+<ul>
+  <li>Vestra rides on a commercial bank's trust operations. Bank holds trust account in <em>its own name</em>; Vestra is the instruction-giving party under a trust deed.</li>
+  <li><strong>Recommend HFC first</strong> (diaspora infrastructure overlap) or <strong>NCBA</strong> (best API DX post-ConnectPlus launch Oct 2025). Fallback Equity (Jenga API) or Co-op (SACCO/chama-adjacent).</li>
+  <li>Requires: incorporation docs, audited financials (or letter of undertaking for new co), fit-and-proper directors, DPO evidence, KYC/AML program document, escrow flow diagram, indemnity + insurance evidence.</li>
+</ul>
+<p><strong>Cost:</strong> Trust deed drafting KES 400,000-900,000 (both sides' counsel). Bank account setup fee KES 25,000-100,000. Ongoing custodian fee 0.1-0.35% of average balance monthly.</p>
+<p><strong>Timeline:</strong> <strong>3-6 months</strong>. Start immediately.</p>
+
+<h3>4.3 Safaricom Daraja (M-Pesa) production credentials</h3>
+<ul>
+  <li>Apply via Safaricom Business Portal for production shortcode. Sandbox is free; production requires signed Merchant Agreement.</li>
+  <li><strong>Separate C2B shortcode</strong> (rent collection) and <strong>B2C shortcode</strong> (landlord payouts) — cannot combine on same shortcode.</li>
+  <li>Callbacks must be publicly reachable HTTPS, idempotent, and return HTTP 200 always (Daraja retries).</li>
+</ul>
+<p><strong>Cost:</strong> Setup KES 50,000-100,000 per shortcode. Monthly maintenance KES 3,000-8,000 each. Transaction fees: Paybill 1.5%, Buy Goods 0.5%, B2C flat KES 30-70 per payout.</p>
+<p><strong>Timeline:</strong> 4-8 weeks.</p>
+
+<h3>4.4 Aggregator payments (IntaSend + Flutterwave)</h3>
+<ul>
+  <li>Both KES-native, self-service onboarding, no Safaricom Merchant Agreement needed. Use as Daraja fallback + card + Airtel Money coverage.</li>
+</ul>
+<p><strong>Cost:</strong> IntaSend 3.5% STK / 1.5% Buy Goods / PesaLink 0.5% + KES 20. Flutterwave 3.8% cards. Onboarding KES 0.</p>
+<p><strong>Timeline:</strong> 3-10 days.</p>
+
+<h3>4.5 CBK NPS Division comfort letter</h3>
+<ul>
+  <li>Non-binding but strongly recommended: engage CBK NPS Division for a comfort letter confirming the rent-collection pass-through does not require PSP licence.</li>
+</ul>
+<p><strong>Cost:</strong> Regulatory counsel KES 200,000-500,000.</p>
+
+<div class="callout"><strong>Do NOT do in Phase 1:</strong> PSP licence (KES 5M-50M capital), e-money issuer licence, DCP / NDTCP credit licence. Defer to Phase 2 via separate SPV (Vestra Credit Ltd) if you build Rent Advance.</div>
+
+<h2 id="s5">5. Communications compliance (CAK)</h2>
+
+<h3>5.1 CAK Sender ID + SMS aggregator onboarding</h3>
+<ul>
+  <li>Register Sender ID "VESTRA" via CAK-licensed aggregator (Africa's Talking, Celcom, Bongo Live, Onfon). Aggregator handles CAK submission.</li>
+  <li>Separate transactional (rent receipts, tax alerts — any-time OK) from promotional (07:00-19:00 window, DND-compliant, opt-in) message classes in code.</li>
+</ul>
+<p><strong>Cost:</strong> Sender ID KES 5,000-15,000 one-time. SMS unit price KES 0.30-0.80 per message. Monthly minimum KES 5,000-20,000.</p>
+<p><strong>Timeline:</strong> 5-15 days.</p>
+
+<h3>5.2 Email domain + transactional email</h3>
+<ul>
+  <li>Provider: Postmark ($15/mo starter) or Amazon SES ($0.10 per 1,000). Set up SPF + DKIM + DMARC. Domain warm-up 2-3 weeks.</li>
+</ul>
+<p><strong>Cost:</strong> USD 15-60/mo.</p>
+
+<h3>5.3 WhatsApp Business API (deferred but plan for it)</h3>
+<ul>
+  <li>Kenya has 40M+ WhatsApp users; 24-hour free-reply window inside a customer-initiated conversation. Route via 360dialog, Twilio, or MessageBird.</li>
+</ul>
+<p><strong>Cost:</strong> Business Solution Provider fee USD 40-100/mo + Meta conversation fees (Kenya utility ~USD 0.006, marketing ~USD 0.04). Verification 5-10 days.</p>
+
+<h2 id="s6">6. Tax registration &amp; ongoing filing</h2>
+
+<h3>6.1 KRA registrations at incorporation</h3>
+<ul>
+  <li><strong>Corporate KRA PIN</strong> — free via iTax.</li>
+  <li><strong>VAT registration</strong> — mandatory above KES 5M turnover; voluntary below. Recommend voluntary early to reclaim input VAT.</li>
+  <li><strong>PAYE</strong> — required from first employee.</li>
+  <li><strong>Turnover Tax (TOT)</strong> — for turnover KES 1M-25M/yr, 3% of gross. May apply pre-scale-up.</li>
+</ul>
+<p><strong>Cost:</strong> KES 0 (self-service). Ongoing accountant retainer KES 25,000-80,000/mo.</p>
+
+<h3>6.2 Statutory employee contributions</h3>
+<ul>
+  <li>NSSF (National Social Security Fund) — up to KES 4,320/employee/mo (Tier I + II combined, 2026 rate) split employer/employee.</li>
+  <li>SHIF (Social Health Insurance Fund, replaced NHIF Oct 2024) — 2.75% of gross salary.</li>
+  <li>Housing Levy — 1.5% employer + 1.5% employee of gross salary.</li>
+  <li>Affordable Housing Levy — collected via PAYE.</li>
+</ul>
+
+<h3>6.3 eTIMS onboarding</h3>
+<ul>
+  <li>Mandatory for all Vestra invoices from Jan 2026. Onboard via KRA eTIMS portal or through a KRA-approved eTIMS OSP (Online Service Provider). If Vestra resells eTIMS to landlord clients, register as OSP.</li>
+</ul>
+<p><strong>Cost:</strong> KES 0 direct; OSP fees KES 500-2,000 per issuing party per month if reselling.</p>
+
+<h3>6.4 eRITS integration (Vestra product feature)</h3>
+<ul>
+  <li>Integrate <strong>Gava Connect API</strong> to file landlord MRI returns. Register as KRA integrated party (developer + production certificates).</li>
+</ul>
+<p><strong>Cost:</strong> KES 0 direct; engineering effort ~3-4 weeks.</p>
+
+<h2 id="s7">7. Sector-specific licences</h2>
+
+<h3>7.1 Estate Agents Registration Board (EARB)</h3>
+<ul>
+  <li>Vestra <em>as a platform</em> is not an estate agent — no EARB registration needed if we don't hold ourselves out as agents.</li>
+  <li>Individual EARB-licensed agents onboard onto Vestra with their existing licence.</li>
+  <li>Cache the public <a href="https://members.estateagentsboard.or.ke">EARB Members Directory</a> for verification badges. ~500 licensed agents nationally.</li>
+</ul>
+
+<h3>7.2 Advocate on retainer</h3>
+<ul>
+  <li>Title verification, POA drafting, dispute handling. Not a licence — a service.</li>
+</ul>
+<p><strong>Cost:</strong> Retainer KES 80,000-200,000/mo + per-matter billing.</p>
+
+<h3>7.3 Land Control Board consent (workflow, not licence)</h3>
+<ul>
+  <li>For agricultural-land sales outside municipalities, LCB consent mandatory. Application digitized via Ardhisasa but hearings still monthly per sub-county.</li>
+</ul>
+
+<h2 id="s8">8. Consumer-facing legal documents</h2>
+<p>All required before first live user. Draft with counsel, publish before launch.</p>
+
+<h3>8.1 Terms of Service</h3>
+<ul>
+  <li>Platform ToS with clear disclaimer that Vestra is not an estate agent + limitation of liability + dispute resolution (Kenya arbitration + High Court jurisdiction).</li>
+</ul>
+
+<h3>8.2 Privacy Policy</h3>
+<ul>
+  <li>DPA-2019-compliant. Names all processors (see §3.4 DPA list). Cookie policy overlay.</li>
+</ul>
+
+<h3>8.3 Escrow Agreement template</h3>
+<ul>
+  <li>Tri-party (buyer + seller + Vestra as instruction-giver on trust account) or bilateral variants for rent deposit. Signed via advanced e-signature (KICA §83J).</li>
+</ul>
+
+<h3>8.4 Landlord Services Agreement (rent management + KRA filing)</h3>
+<ul>
+  <li>Covers rent collection, payout schedule, MRI remittance authority, fee schedule.</li>
+</ul>
+
+<h3>8.5 Tenancy Agreement template</h3>
+<ul>
+  <li>Standard KE tenancy customized per Vestra deposit + move-out rules.</li>
+</ul>
+
+<h3>8.6 Refund Policy + Complaints Policy</h3>
+<h3>8.7 Acceptable Use Policy (agents + listings)</h3>
+<h3>8.8 Cookie Consent Notice</h3>
+
+<p><strong>Total cost for full document suite:</strong> KES 300,000-700,000 with commercial counsel.</p>
+
+<h2 id="s9">9. Insurance</h2>
+
+<table>
+<tr><th>Policy</th><th>Purpose</th><th>Cost (annual)</th></tr>
+<tr><td>Professional Indemnity</td><td>Errors &amp; omissions in advisory / listing verification</td><td>KES 150,000-400,000</td></tr>
+<tr><td>Cyber Liability</td><td>Breach costs, ransomware, DPA fines defense</td><td>KES 200,000-500,000</td></tr>
+<tr><td>Directors &amp; Officers (D&amp;O)</td><td>Board liability</td><td>KES 100,000-300,000</td></tr>
+<tr><td>Public Liability</td><td>On-site verifier accidents</td><td>KES 50,000-150,000</td></tr>
+<tr><td>Group Life + Medical (employees)</td><td>Retention + statutory</td><td>KES 300,000-800,000</td></tr>
+<tr><td>Fidelity Guarantee</td><td>Employee theft (trust-adjacent role)</td><td>KES 80,000-200,000</td></tr>
+</table>
+<p><strong>Total:</strong> KES 880,000-2,350,000/yr. <strong>Recommend a broker</strong> (Britam, ICEA Lion, APA, Jubilee) to bundle.</p>
+
+<h2 id="s10">10. Intellectual property</h2>
+
+<h3>10.1 Trademark "Vestra" + logo</h3>
+<ul>
+  <li>File at <strong>KIPI (Kenya Industrial Property Institute)</strong>. Classes 36 (financial / insurance / real estate) and 42 (software / technology). Consider Class 35 (advertising / business management) if selling agent SaaS.</li>
+</ul>
+<p><strong>Cost:</strong> KES 15,000 per class + KES 15,000 per class publication + agent fees KES 25,000-60,000 per class.</p>
+<p><strong>Timeline:</strong> 6-14 months to registration; use TM (unregistered) mark from day one.</p>
+
+<h3>10.2 Domain registration</h3>
+<ul>
+  <li>vestra.co.ke via KENIC-accredited registrar (Truehost, Sasahost, HostAfrica). Grab vestra.com if available (currently third-party held — investigate cost). Add vestra.app, vestra.africa defensively.</li>
+</ul>
+<p><strong>Cost:</strong> .co.ke KES 1,300/yr; .com KES 1,500-5,000/yr (or 5-6-figure USD acquisition if squatted); .app USD 15/yr; .africa USD 30/yr.</p>
+
+<h3>10.3 Copyright register (code + Hass-equivalent index)</h3>
+<ul>
+  <li>Register core software + property-index methodology at <strong>KECOBO (Kenya Copyright Board)</strong> once Vestimate has real data (month 12+).</li>
+</ul>
+<p><strong>Cost:</strong> KES 1,000 per registration.</p>
+
+<h2 id="s11">11. Hosting &amp; infrastructure</h2>
+
+<h3>11.1 Immediate (single Ubuntu VPS)</h3>
+<ul>
+  <li>Hetzner AX41 (Falkenstein) or Vultr NBO1 (Nairobi POP where available). 8GB RAM / 4 vCPU sufficient to 10k MAU.</li>
+</ul>
+<p><strong>Cost:</strong> USD 20-40/mo.</p>
+
+<h3>11.2 Production stack (ship weeks 1-3)</h3>
+<ul>
+  <li>Managed Postgres (RDS db.t4g.small ~USD 40/mo, or Supabase Pro USD 25/mo). Redis (Upstash free tier or self-host). Cloudflare R2 storage. Bunny.net Optimizer + CDN. Grafana Cloud Pro. Sentry Team. PostHog Cloud. OneSignal free tier.</li>
+</ul>
+
+<h3>11.3 Full production (from 50k MAU)</h3>
+<ul>
+  <li>Fly.io Johannesburg (jnb) region for backend, Cloudflare Pages for frontend, EAS Build for Capacitor.</li>
+</ul>
+
+<table>
+<tr><th>Item</th><th>Provider</th><th>Monthly at 10k MAU</th><th>at 50k MAU</th><th>at 200k MAU</th></tr>
+<tr><td>Compute (backend)</td><td>Fly.io jnb</td><td class="money">$15</td><td class="money">$50</td><td class="money">$200</td></tr>
+<tr><td>Frontend hosting</td><td>Cloudflare Pages</td><td class="money">$0</td><td class="money">$0</td><td class="money">$20</td></tr>
+<tr><td>Postgres</td><td>RDS / Supabase Pro</td><td class="money">$25</td><td class="money">$80</td><td class="money">$300</td></tr>
+<tr><td>Redis</td><td>Upstash / self-host</td><td class="money">$10</td><td class="money">$30</td><td class="money">$100</td></tr>
+<tr><td>Vector search</td><td>pgvector on same RDS</td><td class="money">$0</td><td class="money">$0</td><td class="money">$50</td></tr>
+<tr><td>Search</td><td>Typesense self-host</td><td class="money">$0</td><td class="money">$20</td><td class="money">$80</td></tr>
+<tr><td>Media storage</td><td>Cloudflare R2</td><td class="money">$10</td><td class="money">$30</td><td class="money">$120</td></tr>
+<tr><td>Media CDN + optimizer</td><td>Bunny.net</td><td class="money">$15</td><td class="money">$30</td><td class="money">$120</td></tr>
+<tr><td>Maps</td><td>MapTiler Flex</td><td class="money">$25</td><td class="money">$50</td><td class="money">$180</td></tr>
+<tr><td>KYC (per verification)</td><td>Smile Identity</td><td class="money">$100</td><td class="money">$500</td><td class="money">$2,000</td></tr>
+<tr><td>SMS transactional</td><td>Africa's Talking</td><td class="money">$40</td><td class="money">$200</td><td class="money">$800</td></tr>
+<tr><td>Email transactional</td><td>Postmark</td><td class="money">$15</td><td class="money">$50</td><td class="money">$150</td></tr>
+<tr><td>Push notifications</td><td>OneSignal free</td><td class="money">$0</td><td class="money">$0</td><td class="money">$30</td></tr>
+<tr><td>Voice ASR</td><td>Deepgram + Whisper self-host</td><td class="money">$100</td><td class="money">$400</td><td class="money">$1,500</td></tr>
+<tr><td>Embeddings</td><td>Cohere Embed v4</td><td class="money">$20</td><td class="money">$50</td><td class="money">$200</td></tr>
+<tr><td>AI concierge</td><td>Claude Sonnet + Haiku</td><td class="money">$70</td><td class="money">$350</td><td class="money">$1,400</td></tr>
+<tr><td>Observability</td><td>Grafana Cloud + Sentry</td><td class="money">$50</td><td class="money">$150</td><td class="money">$450</td></tr>
+<tr><td>Analytics + flags</td><td>PostHog Cloud</td><td class="money">$0</td><td class="money">$50</td><td class="money">$300</td></tr>
+<tr><td>CI/CD</td><td>GH Actions</td><td class="money">$0</td><td class="money">$0</td><td class="money">$20</td></tr>
+<tr><td>Mobile builds</td><td>EAS Production</td><td class="money">$99</td><td class="money">$99</td><td class="money">$199</td></tr>
+<tr><td>Domain + TLS</td><td>Cloudflare</td><td class="money">$5</td><td class="money">$5</td><td class="money">$5</td></tr>
+<tr class="grand-total"><td><strong>Total (USD)</strong></td><td></td><td class="money">$599</td><td class="money">$2,144</td><td class="money">$8,224</td></tr>
+<tr class="grand-total"><td><strong>Total (KES @ 130)</strong></td><td></td><td class="money">KES 77,900</td><td class="money">KES 278,700</td><td class="money">KES 1,069,000</td></tr>
+</table>
+
+<h2 id="s12">12. Third-party integrations</h2>
+
+<table>
+<tr><th>Integration</th><th>Purpose</th><th>Setup</th><th>Recurring</th></tr>
+<tr><td>Safaricom Daraja (STK Push + B2C)</td><td>M-Pesa payments</td><td>KES 200,000</td><td>KES 12,000/mo + txn fees</td></tr>
+<tr><td>IntaSend</td><td>PesaLink + B2B payouts</td><td>KES 0</td><td>% of GMV only</td></tr>
+<tr><td>Flutterwave</td><td>Card + Airtel + fallback</td><td>KES 0</td><td>% of GMV only</td></tr>
+<tr><td>Smile Identity</td><td>KYC (National ID + KRA + biometric)</td><td>KES 25,000 setup</td><td>$0.30-1.00 per verification</td></tr>
+<tr><td>Ardhisasa (human-in-loop)</td><td>Title verification</td><td>KES 0</td><td>Per-search KES 550 (govt fee) + verifier time</td></tr>
+<tr><td>eSign KE / Docusign</td><td>Advanced e-signatures</td><td>KES 0</td><td>eSign KE KES 1,000/user/mo; Docusign USD 40/user/mo</td></tr>
+<tr><td>Africa's Talking (SMS)</td><td>Bulk SMS via CAK Sender ID</td><td>KES 15,000</td><td>KES 0.80/SMS</td></tr>
+<tr><td>Google Maps Geocoding</td><td>Reverse-geocode rooftops</td><td>KES 0</td><td>$50-200/mo</td></tr>
+<tr><td>Cohere API</td><td>Embeddings</td><td>KES 0</td><td>$0.10/1M tokens</td></tr>
+<tr><td>Anthropic API</td><td>Claude Sonnet 4.6 + Haiku 4.6</td><td>KES 0</td><td>$3/$15 per M tokens</td></tr>
+<tr><td>Deepgram</td><td>Voice ASR</td><td>KES 0</td><td>$0.0043/min streaming</td></tr>
+<tr><td>Sentry</td><td>Errors + RUM</td><td>KES 0</td><td>$26-80/mo</td></tr>
+<tr><td>PostHog</td><td>Analytics + flags + replay</td><td>KES 0</td><td>$0-200/mo</td></tr>
+<tr><td>Grafana Cloud</td><td>Metrics + traces + logs</td><td>KES 0</td><td>$0-50/mo</td></tr>
+<tr><td>Cloudflare (R2, DNS, Pages)</td><td>Storage + edge</td><td>KES 0</td><td>$15-50/mo</td></tr>
+<tr><td>Bunny.net</td><td>Media optimizer + CDN</td><td>KES 0</td><td>$10-40/mo</td></tr>
+<tr><td>MapTiler</td><td>Vector tiles</td><td>KES 0</td><td>$25-180/mo</td></tr>
+<tr><td>OneSignal</td><td>Push</td><td>KES 0</td><td>$0-30/mo</td></tr>
+<tr><td>Postmark / SES</td><td>Transactional email</td><td>KES 0</td><td>$15-60/mo</td></tr>
+<tr><td>WhatsApp Business API (deferred)</td><td>Inbound leads</td><td>KES 15,000</td><td>$40-100/mo + per-conversation</td></tr>
+</table>
+
+<h2 id="s13">13. Remaining engineering work</h2>
+<p>Estimated effort by feature. Assumes 1 senior full-stack + 1 mid-level engineer (see §14 for team).</p>
+
+<table>
+<tr><th>Feature</th><th>Est. effort</th><th>Blocking?</th></tr>
+<tr><td>Migrate Prisma schema to live DB (apply baseline migration)</td><td>1 day</td><td>Critical</td></tr>
+<tr><td>Environment config for prod (.env, secrets, DATABASE_URL)</td><td>1 day</td><td>Critical</td></tr>
+<tr><td>Daraja STK Push route + callback endpoint (both C2B and B2C)</td><td>2 weeks</td><td>Critical</td></tr>
+<tr><td>Idempotency middleware wired at all financial POSTs</td><td>Already done (Phase 2)</td><td>—</td></tr>
+<tr><td>Audit log writes at all financial callsites</td><td>Already done (Phase 2)</td><td>—</td></tr>
+<tr><td>Smile Identity KYC integration + gate landlord verification</td><td>2 weeks</td><td>Critical</td></tr>
+<tr><td>Ardhisasa human-in-loop workflow (paralegal task queue)</td><td>2 weeks</td><td>High</td></tr>
+<tr><td>eRITS Gava Connect integration for MRI filing</td><td>3-4 weeks</td><td>High (unique wedge)</td></tr>
+<tr><td>eTIMS invoice generation per rent receipt</td><td>2 weeks</td><td>High</td></tr>
+<tr><td>Geofenced photo-verified listing (Capacitor mobile flow)</td><td>4 weeks</td><td>High (wedge #1)</td></tr>
+<tr><td>Escrow milestone state machine + trust-account instruction API</td><td>3 weeks</td><td>Critical for sale flow</td></tr>
+<tr><td>Meilisearch / Typesense listing search</td><td>3 days</td><td>Medium</td></tr>
+<tr><td>Cloudflare R2 + Bunny.net media pipeline</td><td>2 days</td><td>Medium</td></tr>
+<tr><td>Pino + OpenTelemetry + Sentry wiring</td><td>1 week</td><td>Medium (ops)</td></tr>
+<tr><td>Frontend criticals still open (HttpOnly cookies, session:expired listener, delete mockCall in auth/escrow/blog services, AuthGuard.initialized)</td><td>2 weeks</td><td>High</td></tr>
+<tr><td>Capacitor iOS Info.plist WKAppBoundDomains array + entitlements</td><td>1 day</td><td>Blocks iOS build</td></tr>
+<tr><td>Vitest + supertest scaffold + auth/IDOR/escrow regression tests</td><td>1 week</td><td>High (before real users)</td></tr>
+<tr><td>Full monolith split (deferred)</td><td>2 weeks</td><td>Low</td></tr>
+<tr><td>RAG search (pgvector + Cohere + Typesense hybrid + Sonnet)</td><td>3 weeks</td><td>Medium (moat)</td></tr>
+<tr><td>Voice search (Deepgram + Whisper self-host)</td><td>2 weeks</td><td>Low (v2)</td></tr>
+<tr><td>Property Owner (agent) mobile onboarding + EARB scrape cache</td><td>2 weeks</td><td>High (agent wedge)</td></tr>
+<tr><td>Landlord SaaS dashboard (rent collection + MRI + reconciliation)</td><td>4 weeks</td><td>High (wedge #10)</td></tr>
+<tr><td>Diaspora MVP (verified escrow + video walkthrough scheduling + POA assist)</td><td>8 weeks (v1)</td><td>Deferred to month 9</td></tr>
+<tr><td>Total engineering (blocking + high) ~4-5 months</td><td></td><td></td></tr>
+</table>
+
+<h2 id="s14">14. Team &amp; operations</h2>
+
+<h3>14.1 Founding team + first hires (0-6 months)</h3>
+<table>
+<tr><th>Role</th><th>Purpose</th><th>Salary/mo (KES)</th></tr>
+<tr><td>Founder / CEO</td><td>Strategy, BD, fundraising</td><td>0-250,000 (deferred)</td></tr>
+<tr><td>Founder / CTO</td><td>Engineering lead</td><td>0-250,000 (deferred)</td></tr>
+<tr><td>Senior Backend Engineer</td><td>Daraja, escrow, eRITS integrations</td><td>350,000-550,000</td></tr>
+<tr><td>Mid Frontend Engineer (React 19 + Capacitor)</td><td>Ship criticals, landlord dashboard</td><td>180,000-320,000</td></tr>
+<tr><td>Product Designer (contract)</td><td>UX + landlord dashboard</td><td>150,000-300,000</td></tr>
+<tr><td>Fractional DPO</td><td>ODPC, DPIA, breach runbook</td><td>150,000-300,000</td></tr>
+<tr><td>Accountant (part-time)</td><td>KRA, PAYE, VAT, monthly close</td><td>50,000-100,000</td></tr>
+<tr><td>Advocate (retainer)</td><td>Title, POA, escrow disputes</td><td>80,000-200,000</td></tr>
+</table>
+<p><strong>Payroll month 6:</strong> KES 1.1M-2.0M/mo.</p>
+
+<h3>14.2 Operations hires (month 3-9)</h3>
+<table>
+<tr><th>Role</th><th>Purpose</th><th>Salary/mo (KES)</th></tr>
+<tr><td>Agent BD Lead</td><td>Onboard top 200 EARB agents</td><td>180,000-280,000 + commission</td></tr>
+<tr><td>Field Verifier x3 (Nairobi + Kiambu)</td><td>Geofenced photo verification, on-site tours</td><td>60,000-90,000 each</td></tr>
+<tr><td>Customer Support (bilingual EN/SW) x2</td><td>WhatsApp + email + call, 12h coverage</td><td>50,000-80,000 each</td></tr>
+<tr><td>Paralegal / Ardhisasa Coordinator</td><td>Title-search workflow</td><td>80,000-140,000</td></tr>
+<tr><td>Growth / Content Marketer</td><td>SEO + newsletter + diaspora content</td><td>150,000-250,000</td></tr>
+</table>
+<p><strong>Payroll month 9:</strong> KES 2.2M-3.6M/mo.</p>
+
+<h2 id="s15">15. Content &amp; data acquisition</h2>
+
+<h3>15.1 Listings sourcing (blocks launch)</h3>
+<ul>
+  <li>Manual sourcing of 200-500 verified listings (Kilimani, Westlands, Kileleshwa, Kilimani, South B, Kileleshwa, Runda, Karen, Kiambu Rd corridor). Each requires: Ardhisasa search receipt + landlord + verified photos + geofenced verification + agent onboarding.</li>
+</ul>
+<p><strong>Cost:</strong> Field verifier time (in-house salary above) + Ardhisasa search fees KES 550 × 500 listings = KES 275,000 + landlord acquisition incentive (first 100 free listing months) = KES 0-500,000.</p>
+
+<h3>15.2 EARB Members Directory scrape</h3>
+<ul>
+  <li>Scrape and cache the ~500 EARB-licensed agents; onboard the top 100 in Nairobi first.</li>
+</ul>
+<p><strong>Cost:</strong> 1 week engineering.</p>
+
+<h3>15.3 Kenya county polygons + Plus Codes</h3>
+<ul>
+  <li>Import KNBS 2019 census county + sub-county polygons (free). Auto-generate Plus Codes for every listing.</li>
+</ul>
+
+<h3>15.4 Sheng eval set (500 examples)</h3>
+<ul>
+  <li>Contract 3-5 Sheng-fluent Nairobians to write property queries. Vestra owns the dataset. Used to benchmark all future LLM releases.</li>
+</ul>
+<p><strong>Cost:</strong> KES 200,000-500,000 one-time.</p>
+
+<h3>15.5 Property image library (fallback + placeholders)</h3>
+<ul>
+  <li>Licence 2,000-5,000 Kenya-appropriate property stock images for empty-state UX and landlord upload placeholders.</li>
+</ul>
+<p><strong>Cost:</strong> KES 100,000-300,000 one-time (Alamy Africa, Unsplash+, or commissioned local photographer).</p>
+
+<h2 id="s16">16. Marketing &amp; brand</h2>
+
+<h3>16.1 Brand identity + design system</h3>
+<ul>
+  <li>Logo + primary/secondary colour palette + typography + component library. Existing Tailwind + Framer Motion setup is solid — need brand refresh only. Contract or in-house designer.</li>
+</ul>
+<p><strong>Cost:</strong> KES 300,000-800,000 one-time.</p>
+
+<h3>16.2 Launch campaigns</h3>
+<ul>
+  <li>SEO content — 30-50 suburb + property-type pages (targeting Property24's programmatic-SEO position). In-house or Namu Digital / Kingsway Solutions.</li>
+  <li>Diaspora corridor content (US + UK) — 20 long-form posts + video walkthrough demos.</li>
+  <li>WhatsApp broadcast lists + Kenyan diaspora Facebook groups.</li>
+  <li>Google Ads (Kenya + US MN/TX/MA + UK London) — KES 200,000-500,000/mo cap.</li>
+  <li>Business Daily / Standard / Nation editorial placement (relationship-driven, KES 100,000-400,000 per feature).</li>
+</ul>
+<p><strong>Cost 0-6 months:</strong> KES 1.5M-4M total.</p>
+
+<h3>16.3 Trust signals on site</h3>
+<ul>
+  <li>DPA-2019 registration badge, EARB partnership statement, bank trust-account partner logo, ODPC-registered logo, professional-indemnity insurer logo. All required from day one.</li>
+</ul>
+
+<h2 id="s17">17. Fundraising &amp; capital</h2>
+
+<h3>17.1 Recommended raise structure</h3>
+<ul>
+  <li><strong>Pre-seed / friends &amp; family:</strong> KES 15M-30M (USD 115k-230k) to cover months 0-6.</li>
+  <li><strong>Seed round:</strong> USD 800k-1.5M at month 6-9, once verified escrow rail is live and first 50 landlords onboarded.</li>
+  <li><strong>Series A:</strong> USD 3M-5M month 15-18, once diaspora vertical + KRA MRI + 500 landlords onboarded.</li>
+</ul>
+
+<h3>17.2 Vehicles</h3>
+<ul>
+  <li>Pre-seed likely SAFE (post-money, discount 20% + cap KES 300M).</li>
+  <li>Seed onward: priced round, SHA drafted, Kenya-registered PLC or offshore holdco (Mauritius / Delaware) — decide with corporate counsel based on target investor pool.</li>
+</ul>
+
+<h3>17.3 Grants + non-dilutive</h3>
+<ul>
+  <li>Founders Factory Africa Accelerator, MEST Africa, Antler East Africa, DFS Lab, Baobab Network — dilutive but soft-landing.</li>
+  <li>African Development Bank Youth Entrepreneurship Investment Bank, Mastercard Foundation — pursue after seed.</li>
+</ul>
+
+<h3>17.4 Pitch collateral</h3>
+<ul>
+  <li>10-12 slide deck, 3-5 page memo, data room (financials, cap table, product demo, DPIA), reference customer quotes.</li>
+</ul>
+<p><strong>Cost:</strong> KES 100,000-300,000 (designer + deck writing).</p>
+
+<h2 id="s18">18. Total cost summary</h2>
+
+<h3>18.1 Upfront (0-6 months, one-time + setup)</h3>
+<table>
+<tr><th>Category</th><th>Range (KES)</th></tr>
+<tr><td>Company formation + SHA + ESOP</td><td>250,000 - 700,000</td></tr>
+<tr><td>ODPC registration + DPIA + policies</td><td>200,000 - 500,000</td></tr>
+<tr><td>Partner-bank trust account (trust-deed + setup)</td><td>500,000 - 1,000,000</td></tr>
+<tr><td>Daraja shortcodes + IntaSend + Flutterwave setup</td><td>150,000 - 250,000</td></tr>
+<tr><td>Legal document suite (ToS/Privacy/Escrow/Landlord/Tenancy)</td><td>300,000 - 700,000</td></tr>
+<tr><td>Insurance (annual pre-pay)</td><td>880,000 - 2,350,000</td></tr>
+<tr><td>Trademark + domain + brand</td><td>500,000 - 1,200,000</td></tr>
+<tr><td>Initial hosting + integrations setup</td><td>100,000 - 200,000</td></tr>
+<tr><td>Payroll 6 months (2 eng + fractional DPO + accountant + advocate)</td><td>6,000,000 - 10,000,000</td></tr>
+<tr><td>Content + data acquisition (listings + Sheng + images)</td><td>600,000 - 1,300,000</td></tr>
+<tr><td>Marketing 0-6 mo</td><td>1,500,000 - 4,000,000</td></tr>
+<tr><td>Business permit + registered office (6 mo)</td><td>250,000 - 550,000</td></tr>
+<tr><td>Contingency (15%)</td><td>1,600,000 - 3,400,000</td></tr>
+<tr class="grand-total"><td><strong>Total upfront + first 6 months</strong></td><td class="money">KES 12,830,000 - 26,150,000</td></tr>
+<tr class="grand-total"><td><strong>USD equivalent (@ 130)</strong></td><td class="money">USD 98,700 - 201,150</td></tr>
+</table>
+
+<h3>18.2 Recurring monthly (steady state at 10k MAU)</h3>
+<table>
+<tr><th>Category</th><th>Monthly (KES)</th></tr>
+<tr><td>Payroll (8-12 people incl. field ops)</td><td>2,200,000 - 3,600,000</td></tr>
+<tr><td>Infrastructure + integrations (see §11.3 table)</td><td>78,000 - 280,000</td></tr>
+<tr><td>Fractional DPO + accountant + advocate retainers</td><td>280,000 - 600,000</td></tr>
+<tr><td>Registered office / coworking</td><td>40,000 - 90,000</td></tr>
+<tr><td>Marketing steady-state</td><td>250,000 - 700,000</td></tr>
+<tr><td>Insurance (amortized annual)</td><td>75,000 - 200,000</td></tr>
+<tr><td>Business permits (amortized)</td><td>2,000 - 5,000</td></tr>
+<tr class="grand-total"><td><strong>Total monthly recurring</strong></td><td class="money">KES 2,925,000 - 5,475,000</td></tr>
+<tr class="grand-total"><td><strong>USD equivalent (@ 130)</strong></td><td class="money">USD 22,500 - 42,100</td></tr>
+</table>
+
+<h3>18.3 12-month runway target</h3>
+<p><strong>Realistic ask for pre-seed round:</strong> KES 40M-50M (USD 310k-385k). Covers 12 months at midpoint burn with 3-month buffer.</p>
+
+<h2 id="s19">19. Timeline &amp; critical path</h2>
+
+<h3>19.1 Critical path (Gantt-lite)</h3>
+<table>
+<tr><th>Month</th><th>Milestone</th><th>Owner</th></tr>
+<tr><td>M0</td><td>Company registration, KRA PIN, domain, bank account, ODPC registration filed, DPO engaged, advocate + accountant retained</td><td>Founders + counsel</td></tr>
+<tr><td>M1</td><td>ODPC registration granted, insurance procured, first hires (backend eng + designer), Daraja sandbox integrated, Smile Identity onboarded</td><td>CEO + CTO</td></tr>
+<tr><td>M2</td><td>Bank BD meetings, trust-deed draft in review, Prisma migration live, staging environment, ToS/Privacy drafted, DPIA drafted, backend criticals shipped (audit + idempotency wired — done)</td><td>CEO + CTO + counsel</td></tr>
+<tr><td>M3</td><td>Daraja production credentials, CAK Sender ID, geofenced photo verification (wedge #1) launched to closed beta, first 50 verified listings sourced</td><td>Eng + Ops</td></tr>
+<tr><td>M4</td><td>Bank trust deed signed, escrow rail live, first paid rent transaction, Smile KYC gate on landlord onboarding, eTIMS integration, mobile builds signed (iOS + Android)</td><td>Full team</td></tr>
+<tr><td>M5</td><td>Public launch to Nairobi + Kiambu, agent BD to top 30 EARB agents, landlord SaaS dashboard v1, KRA MRI calculation (rate parameterized)</td><td>Full team</td></tr>
+<tr><td>M6</td><td>eRITS Gava Connect integration live, Vestimate v0 (proto), seed round pitching starts, 200 landlords onboarded</td><td>Full team + BD</td></tr>
+<tr><td>M9</td><td>Diaspora vertical MVP (US + UK) live, first diaspora transaction closed via escrow, Vestra Credit Ltd formed (Rent Advance path)</td><td>+ Diaspora ops hire</td></tr>
+<tr><td>M12</td><td>500+ landlords, 100+ EARB agents, first Vestimate license to a bank, Series A conversations start</td><td>Full team</td></tr>
+</table>
+
+<h3>19.2 Critical-path bottlenecks</h3>
+<ul>
+  <li><strong>Partner-bank trust account</strong> — 3-6 months. Cannot compress. Start day 0.</li>
+  <li><strong>Daraja production credentials</strong> — 4-8 weeks. Start month 1.</li>
+  <li><strong>ODPC registration</strong> — 2-6 weeks. Start day 0.</li>
+  <li><strong>eRITS Gava Connect certification</strong> — 4-8 weeks vendor certification. Start month 3.</li>
+  <li><strong>iOS app-bound domain association</strong> — needs published website + entitlement request. Start month 2.</li>
+</ul>
+
+<h2 id="s20">20. Risks &amp; contingencies</h2>
+
+<div class="risk"><strong>Legal / regulatory risks.</strong>
+  <ul>
+    <li><span class="critical">Bank refuses trust arrangement:</span> pivot to a specialized fintech trust operator (rare in KE) OR structure as advocate-held client account for first 6 months while re-approaching another Tier-1 bank. Cost: legal-only escrow adds friction + advocate liability.</li>
+    <li><span class="critical">Finance Bill 2026 passes 10% MRI + non-resident 30% withholding at unfavourable dates:</span> Vestra rate config already parameterized. Impact: landlord churn to informal channels; mitigate with content education campaign.</li>
+    <li><span class="high">ODPC amendment expands fine caps to "whichever higher":</span> maintain zero-breach posture; DPIA-first product development.</li>
+  </ul>
+</div>
+
+<div class="risk"><strong>Product / operational risks.</strong>
+  <ul>
+    <li><span class="critical">Field verifier discovers fake title on live listing:</span> tenant/buyer already paid — trigger refund from escrow within 24h; deregister the agent; publish incident to trust ledger.</li>
+    <li><span class="high">Daraja outage during rent-payment window:</span> failover to IntaSend + Flutterwave via `PaymentProvider` interface; retries via BullMQ.</li>
+    <li><span class="high">Ardhisasa API becomes public but with breaking schema:</span> abstract behind adapter; keep human-in-loop path as fallback for 6 months post-API.</li>
+    <li><span class="medium">Fraudulent developer runs polished listing set:</span> gated by geofenced-photo verification + Ardhisasa cross-check + trust ledger from day one.</li>
+  </ul>
+</div>
+
+<div class="risk"><strong>Market / competitive risks.</strong>
+  <ul>
+    <li><span class="critical">Property24 SA parent reallocates capital to KE:</span> 18-24 month entrench window. Prioritize agent lock-in via role-split commissions and landlord lock-in via KRA MRI integration — both punitive to switch out of.</li>
+    <li><span class="high">Spleet enters Kenya with rent-financing before Vestra:</span> ship Rent Advance v1 by month 9 in Vestra Credit Ltd wrapper.</li>
+    <li><span class="high">BuyRentKenya (Rushbox) turns around with fresh capital:</span> keep momentum on agent BD and content SEO to hold post-acquisition confusion window.</li>
+  </ul>
+</div>
+
+<div class="risk"><strong>Financial risks.</strong>
+  <ul>
+    <li><span class="critical">Runway underestimated:</span> hire schedule can be deferred by 1-2 months; agent BD can compress with commission-heavy pay. Keep 3-month buffer minimum.</li>
+    <li><span class="high">Escrow float loss:</span> insured under fidelity guarantee + partner-bank indemnity; audit reconciliation daily.</li>
+  </ul>
+</div>
+
+<h2 id="s21">21. Executable checklist (do in order)</h2>
+
+<h4>Week 0-2</h4>
+<ol>
+  <li>Register company (eCitizen BRS)</li>
+  <li>Corporate KRA PIN + iTax + eTIMS onboarding</li>
+  <li>Register domain (vestra.co.ke + defensively .com/.app/.africa)</li>
+  <li>Open business bank account</li>
+  <li>Retain corporate counsel + fractional DPO</li>
+  <li>File ODPC registration (controller + processor)</li>
+  <li>Trademark filing at KIPI (classes 36 + 42)</li>
+  <li>Draft SHA + ESOP with counsel</li>
+</ol>
+
+<h4>Week 2-6</h4>
+<ol start="9">
+  <li>Insurance broker meetings — bind PI + cyber + D&amp;O</li>
+  <li>ToS / Privacy / Escrow / Landlord / Tenancy templates drafted</li>
+  <li>DPIA + Records of Processing register</li>
+  <li>Apply for Safaricom Daraja sandbox + production shortcodes</li>
+  <li>Onboard Smile Identity KYC (sandbox integration)</li>
+  <li>Sign up IntaSend + Flutterwave</li>
+  <li>Africa's Talking + CAK Sender ID application</li>
+  <li>First engineering hire started; ship remaining backend criticals + iOS Info.plist</li>
+  <li>Apply Prisma baseline migration to staging DB</li>
+</ol>
+
+<h4>Week 6-12</h4>
+<ol start="18">
+  <li>Bank BD — HFC + NCBA discovery meetings; issue trust-deed draft</li>
+  <li>Daraja production credentials received; wire STK Push + B2C</li>
+  <li>eRITS Gava Connect sandbox integration + eTIMS invoice generator</li>
+  <li>Ship geofenced photo-verified listing on Capacitor</li>
+  <li>Onboard first 50 verified listings + 10 EARB agents</li>
+  <li>Sentry + Grafana + PostHog + OneSignal live</li>
+  <li>Vitest + supertest regression suite (auth, IDOR, escrow, refresh rotation, verify decide)</li>
+  <li>Beta launch to 100 users (Nairobi)</li>
+</ol>
+
+<h4>Month 3-6</h4>
+<ol start="26">
+  <li>Sign partner-bank trust deed; escrow rail live</li>
+  <li>KYC gate on all landlord onboarding</li>
+  <li>Landlord SaaS dashboard v1 (rent + MRI + reconciliation)</li>
+  <li>Public launch — Nairobi + Kiambu counties</li>
+  <li>Agent BD: onboard top 30 EARB agents</li>
+  <li>Start seed round conversations</li>
+</ol>
+
+<h4>Month 6-12</h4>
+<ol start="32">
+  <li>eRITS filing live for landlords</li>
+  <li>Vestimate v0 with 6 months of transaction data</li>
+  <li>Diaspora MVP (US + UK)</li>
+  <li>Form Vestra Credit Ltd (Rent Advance track)</li>
+  <li>Series A conversations start</li>
+</ol>
+
+<p class="footer-note">Prepared 2026-07-04. Costs are indicative ranges based on public 2025-2026 KE market data. Actual figures depend on vendor negotiation and scope. This document is not legal, tax, or financial advice — engage licensed counsel + accountants for final decisions. Sources: research/01_global_playbooks.md, research/02_competitors.md, research/03_regulatory_fiscal.md, research/04_diaspora.md, research/05_tech_stack.md, VESTRA_STRATEGY_2026.md.</p>
+
+</body>
+</html>

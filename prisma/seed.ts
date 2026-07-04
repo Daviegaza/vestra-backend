@@ -4,7 +4,11 @@ import bcrypt from 'bcrypt';
 const prisma = new PrismaClient();
 
 async function main() {
-  const password = await bcrypt.hash('password', 10);
+  if (process.env.NODE_ENV === 'production' && process.env.ALLOW_SEED !== 'true') {
+    throw new Error('Refusing to seed in production (set ALLOW_SEED=true only if intentional).');
+  }
+  const seedPassword = process.env.SEED_PASSWORD || 'password';
+  const password = await bcrypt.hash(seedPassword, 12);
 
   const seedUsers = [
     { email: 'buyer@vestra.com',    fullName: 'John Doe',       phone: '+254711111111', roles: ['buyer'],             activeRole: 'buyer'    as const, location: 'Nairobi' },

@@ -180,42 +180,49 @@ enum ChamaStatus {
 }
 
 model User {
-  id              String        @id @default(cuid())
-  email           String        @unique
-  fullName        String
-  phone           String
-  hashedPassword  String
-  activeRole      UserRole      @default(buyer)
-  avatar          String?
-  isVerified      Boolean       @default(false)
-  isKycVerified   Boolean       @default(false)
-  location        String?
-  bio             String?
-  createdAt       DateTime      @default(now())
-  updatedAt       DateTime      @updatedAt
+  id             String   @id @default(cuid())
+  email          String   @unique
+  fullName       String
+  phone          String
+  hashedPassword String
+  activeRole     UserRole @default(buyer)
+  avatar         String?
+  isVerified     Boolean  @default(false)
+  isKycVerified  Boolean  @default(false)
+  location       String?
+  bio            String?
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
 
-  roles            RoleProfile[]
-  ownedProperties  Property[]    @relation("OwnedProperties")
-  agentListings    Property[]    @relation("AgentListings")
-  sentMessages     Message[]     @relation("MessagesSent")
-  receivedMessages Message[]     @relation("MessagesReceived")
-  notifications    Notification[]
-  buyerEscrows     Escrow[]      @relation("BuyerEscrows")
-  sellerEscrows    Escrow[]      @relation("SellerEscrows")
-  ownedUnits       RentalUnit[]
-  tenantLeases     Lease[]       @relation("TenantLeases")
-  landlordLeases   Lease[]       @relation("LandlordLeases")
-  sentInvites      TenantInvite[] @relation("InvitesSent")
-  receivedInvites  TenantInvite[] @relation("InvitesReceived")
-  subscriptions    Subscription[]
-  extensionRequests PaymentExtension[] @relation("ExtensionsRequested")
-  extensionApprovals PaymentExtension[] @relation("ExtensionsApproved")
-  chamaMemberships  ChamaMember[]
+  roles              RoleProfile[]
+  ownedProperties    Property[]          @relation("OwnedProperties")
+  agentListings      Property[]          @relation("AgentListings")
+  sentMessages       Message[]           @relation("MessagesSent")
+  receivedMessages   Message[]           @relation("MessagesReceived")
+  notifications      Notification[]
+  buyerEscrows       Escrow[]            @relation("BuyerEscrows")
+  sellerEscrows      Escrow[]            @relation("SellerEscrows")
+  ownedUnits         RentalUnit[]
+  tenantLeases       Lease[]             @relation("TenantLeases")
+  landlordLeases     Lease[]             @relation("LandlordLeases")
+  sentInvites        TenantInvite[]      @relation("InvitesSent")
+  receivedInvites    TenantInvite[]      @relation("InvitesReceived")
+  subscriptions      Subscription[]
+  extensionRequests  PaymentExtension[]  @relation("ExtensionsRequested")
+  extensionApprovals PaymentExtension[]  @relation("ExtensionsApproved")
+  chamaMemberships   ChamaMember[]
   chamaContributions ChamaContribution[]
-  leads            Lead[]
-  commissions      Commission[]
-  receipts         RentReceipt[] @relation("TenantReceipts")
-  agentProfile     AgentProfile?
+  leads              Lead[]
+  commissions        Commission[]
+  receipts           RentReceipt[]       @relation("TenantReceipts")
+  landlordReceipts   RentReceipt[]       @relation("LandlordReceipts")
+  agentProfile       AgentProfile?
+  agentReviews       AgentReview[]       @relation("AgentReviewsWritten")
+  favorites          PropertyFavorite[]
+  inquiries          PropertyInquiry[]
+  auditLogs          AuditLog[]
+  refreshTokens      RefreshToken[]
+  passwordResets     PasswordReset[]
 }
 
 model RoleProfile {
@@ -232,107 +239,171 @@ model RoleProfile {
 }
 
 model AgentProfile {
-  id               String   @id @default(cuid())
-  userId           String   @unique
+  id               String           @id @default(cuid())
+  userId           String           @unique
   agencyName       String
-  licenseNumber    String   @unique
-  badgeLevel       String   @default("bronze")
-  rating           Float    @default(0)
-  reviewCount      Int      @default(0)
+  licenseNumber    String           @unique
+  badgeLevel       String           @default("bronze")
+  rating           Float            @default(0)
+  reviewCount      Int              @default(0)
   bio              String?
   specialties      String[]
   city             String?
   county           String?
-  subscriptionTier String   @default("free")
-  createdAt        DateTime @default(now())
+  subscriptionTier SubscriptionTier @default(free)
+  /// EARB (Estate Agents Registration Board) verification cache.
+  earbVerified     Boolean          @default(false)
+  earbCheckedAt    DateTime?
+  createdAt        DateTime         @default(now())
+  updatedAt        DateTime         @updatedAt
 
-  user             User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  user    User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+  reviews AgentReview[]
+
+  @@index([rating])
+  @@index([county, city])
+}
+
+model AgentReview {
+  id         String   @id @default(cuid())
+  agentId    String
+  reviewerId String
+  rating     Int
+  comment    String?
+  createdAt  DateTime @default(now())
+
+  agent    AgentProfile @relation(fields: [agentId], references: [id], onDelete: Cascade)
+  reviewer User         @relation("AgentReviewsWritten", fields: [reviewerId], references: [id], onDelete: Cascade)
+
+  @@unique([agentId, reviewerId])
+  @@index([agentId])
 }
 
 model Property {
-  id            String         @id @default(cuid())
-  ownerId       String
-  agentId       String?
-  title         String
-  description   String
-  propertyType  PropertyType
-  listingType   ListingType
-  status        PropertyStatus @default(active)
-  price         Decimal        @db.Decimal(14, 2)
-  currency      String         @default("KES")
-  bedrooms      Int            @default(0)
-  bathrooms     Int            @default(0)
-  sizeSqft      Int            @default(0)
-  yearBuilt     Int?
-  address       String
-  city          String
-  county        String
-  country       String         @default("Kenya")
-  lat           Float?
-  lng           Float?
-  amenities     String[]
-  images        String[]
-  trustScore    Int            @default(0)
-  isVerified    Boolean        @default(false)
-  isFeatured    Boolean        @default(false)
-  views         Int            @default(0)
-  inquiries     Int            @default(0)
-  createdAt     DateTime       @default(now())
-  updatedAt     DateTime       @updatedAt
+  id           String         @id @default(cuid())
+  ownerId      String
+  agentId      String?
+  title        String
+  description  String
+  propertyType PropertyType
+  listingType  ListingType
+  status       PropertyStatus @default(active)
+  price        Decimal        @db.Decimal(14, 2)
+  currency     String         @default("KES")
+  bedrooms     Int            @default(0)
+  bathrooms    Int            @default(0)
+  sizeSqft     Int            @default(0)
+  yearBuilt    Int?
+  address      String
+  city         String
+  county       String
+  country      String         @default("Kenya")
+  lat          Float?
+  lng          Float?
+  amenities    String[]
+  images       String[]
+  trustScore   Int            @default(0)
+  isVerified   Boolean        @default(false)
+  isFeatured   Boolean        @default(false)
+  views        Int            @default(0)
+  inquiries    Int            @default(0)
+  createdAt    DateTime       @default(now())
+  updatedAt    DateTime       @updatedAt
 
-  owner         User           @relation("OwnedProperties", fields: [ownerId], references: [id])
-  agent         User?          @relation("AgentListings", fields: [agentId], references: [id])
-  leads         Lead[]
-  escrows       Escrow[]
+  owner       User               @relation("OwnedProperties", fields: [ownerId], references: [id])
+  agent       User?              @relation("AgentListings", fields: [agentId], references: [id])
+  leads       Lead[]
+  escrows     Escrow[]
+  favorites   PropertyFavorite[]
+  inquiryList PropertyInquiry[]
 
   @@index([ownerId])
   @@index([propertyType])
   @@index([listingType])
   @@index([status])
+  @@index([agentId])
+  @@index([city, status, listingType])
+  @@index([county, status, listingType])
+  @@index([price])
+  @@index([isFeatured, status])
+}
+
+model PropertyFavorite {
+  id         String   @id @default(cuid())
+  userId     String
+  propertyId String
+  createdAt  DateTime @default(now())
+
+  user     User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  property Property @relation(fields: [propertyId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, propertyId])
+  @@index([userId])
+  @@index([propertyId])
+}
+
+model PropertyInquiry {
+  id         String   @id @default(cuid())
+  propertyId String
+  userId     String?
+  name       String
+  email      String
+  phone      String
+  message    String
+  createdAt  DateTime @default(now())
+
+  property Property @relation(fields: [propertyId], references: [id], onDelete: Cascade)
+  user     User?    @relation(fields: [userId], references: [id])
+
+  @@index([propertyId])
+  @@index([userId])
 }
 
 model RentalUnit {
-  id          String      @id @default(cuid())
-  landlordId  String
-  title       String
-  address     String
-  city        String
-  bedrooms    Int
-  bathrooms   Int
-  rentAmount  Decimal     @db.Decimal(10, 2)
-  currency    String      @default("KES")
-  status      UnitStatus  @default(vacant)
-  image       String?
-  createdAt   DateTime    @default(now())
+  id         String     @id @default(cuid())
+  landlordId String
+  title      String
+  address    String
+  city       String
+  bedrooms   Int
+  bathrooms  Int
+  rentAmount Decimal    @db.Decimal(10, 2)
+  currency   String     @default("KES")
+  status     UnitStatus @default(vacant)
+  image      String?
+  createdAt  DateTime   @default(now())
+  updatedAt  DateTime   @updatedAt
 
-  landlord    User        @relation(fields: [landlordId], references: [id])
+  landlord    User                 @relation(fields: [landlordId], references: [id])
   leases      Lease[]
   maintenance MaintenanceRequest[]
   receipts    RentReceipt[]
   invites     TenantInvite[]
+
+  @@index([landlordId, status])
 }
 
 model TenantInvite {
-  id            String       @id @default(cuid())
-  unitId        String
-  landlordId    String
+  id           String       @id @default(cuid())
+  unitId       String
+  landlordId   String
   /// Phone or email used to find an existing user.
-  tenantEmail   String?
-  tenantPhone   String?
+  tenantEmail  String?
+  tenantPhone  String?
   /// Resolved when user has an account.
-  tenantUserId  String?
-  rentAmount    Decimal      @db.Decimal(10, 2)
-  deposit       Decimal      @db.Decimal(10, 2)
-  startDate     DateTime
-  endDate       DateTime
-  terms         String       @default("")
-  status        InviteStatus @default(pending)
-  createdAt     DateTime     @default(now())
-  respondedAt   DateTime?
+  tenantUserId String?
+  rentAmount   Decimal      @db.Decimal(10, 2)
+  deposit      Decimal      @db.Decimal(10, 2)
+  startDate    DateTime
+  endDate      DateTime
+  terms        String       @default("")
+  status       InviteStatus @default(pending)
+  createdAt    DateTime     @default(now())
+  respondedAt  DateTime?
 
-  unit          RentalUnit   @relation(fields: [unitId], references: [id], onDelete: Cascade)
-  landlord      User         @relation("InvitesSent", fields: [landlordId], references: [id])
-  tenantUser    User?        @relation("InvitesReceived", fields: [tenantUserId], references: [id])
+  unit       RentalUnit @relation(fields: [unitId], references: [id], onDelete: Cascade)
+  landlord   User       @relation("InvitesSent", fields: [landlordId], references: [id])
+  tenantUser User?      @relation("InvitesReceived", fields: [tenantUserId], references: [id])
 
   @@index([tenantUserId, status])
   @@index([tenantEmail])
@@ -354,10 +425,16 @@ model Lease {
   signedByLandlord Boolean     @default(false)
   signedByTenant   Boolean     @default(false)
   createdAt        DateTime    @default(now())
+  updatedAt        DateTime    @updatedAt
 
-  unit             RentalUnit  @relation(fields: [unitId], references: [id])
-  landlord         User        @relation("LandlordLeases", fields: [landlordId], references: [id])
-  tenant           User        @relation("TenantLeases", fields: [tenantId], references: [id])
+  unit     RentalUnit @relation(fields: [unitId], references: [id])
+  landlord User       @relation("LandlordLeases", fields: [landlordId], references: [id])
+  tenant   User       @relation("TenantLeases", fields: [tenantId], references: [id])
+
+  @@index([tenantId, status])
+  @@index([landlordId, status])
+  @@index([unitId])
+  @@index([endDate])
 }
 
 model RentReceipt {
@@ -370,10 +447,15 @@ model RentReceipt {
   period        String
   paidAt        DateTime @default(now())
   paymentMethod String
-  mpesaRef      String?
+  mpesaRef      String?  @unique
 
-  unit          RentalUnit @relation(fields: [unitId], references: [id])
-  tenant        User       @relation("TenantReceipts", fields: [tenantId], references: [id])
+  unit     RentalUnit @relation(fields: [unitId], references: [id])
+  tenant   User       @relation("TenantReceipts", fields: [tenantId], references: [id])
+  landlord User?      @relation("LandlordReceipts", fields: [landlordId], references: [id])
+
+  @@index([tenantId, paidAt])
+  @@index([landlordId, paidAt])
+  @@index([unitId, period])
 }
 
 model MaintenanceRequest {
@@ -387,7 +469,7 @@ model MaintenanceRequest {
   createdAt   DateTime            @default(now())
   updatedAt   DateTime            @updatedAt
 
-  unit        RentalUnit          @relation(fields: [unitId], references: [id])
+  unit RentalUnit @relation(fields: [unitId], references: [id])
 }
 
 model Lead {
@@ -400,9 +482,13 @@ model Lead {
   message    String
   status     LeadStatus @default(new)
   createdAt  DateTime   @default(now())
+  updatedAt  DateTime   @updatedAt
 
-  agent      User       @relation(fields: [agentId], references: [id])
-  property   Property?  @relation(fields: [propertyId], references: [id])
+  agent    User      @relation(fields: [agentId], references: [id])
+  property Property? @relation(fields: [propertyId], references: [id])
+
+  @@index([agentId, status])
+  @@index([propertyId])
 }
 
 model Commission {
@@ -415,8 +501,13 @@ model Commission {
   currency         String        @default("KES")
   status           PaymentStatus @default(pending)
   closedAt         DateTime      @default(now())
+  createdAt        DateTime      @default(now())
+  updatedAt        DateTime      @updatedAt
 
-  agent            User          @relation(fields: [agentId], references: [id])
+  agent User @relation(fields: [agentId], references: [id])
+
+  @@index([agentId, status])
+  @@index([agentId, closedAt])
 }
 
 model Escrow {
@@ -431,24 +522,31 @@ model Escrow {
   createdAt     DateTime     @default(now())
   updatedAt     DateTime     @updatedAt
 
-  property      Property     @relation(fields: [propertyId], references: [id])
-  buyer         User         @relation("BuyerEscrows", fields: [buyerId], references: [id])
-  seller        User         @relation("SellerEscrows", fields: [sellerId], references: [id])
+  property Property @relation(fields: [propertyId], references: [id])
+  buyer    User     @relation("BuyerEscrows", fields: [buyerId], references: [id])
+  seller   User     @relation("SellerEscrows", fields: [sellerId], references: [id])
+
+  @@index([buyerId, status])
+  @@index([sellerId, status])
+  @@index([propertyId])
 }
 
 model Message {
-  id         String   @id @default(cuid())
-  senderId   String
-  receiverId String
-  subject    String
-  content    String
-  read       Boolean  @default(false)
-  createdAt  DateTime @default(now())
+  id             String   @id @default(cuid())
+  senderId       String
+  receiverId     String
+  /// Stable conversation key so /messages/conversations can group cheaply. Format: sorted(senderId, receiverId) joined by ':'.
+  conversationId String
+  subject        String
+  content        String
+  read           Boolean  @default(false)
+  createdAt      DateTime @default(now())
 
-  sender     User     @relation("MessagesSent", fields: [senderId], references: [id])
-  receiver   User     @relation("MessagesReceived", fields: [receiverId], references: [id])
+  sender   User @relation("MessagesSent", fields: [senderId], references: [id])
+  receiver User @relation("MessagesReceived", fields: [receiverId], references: [id])
 
-  @@index([receiverId])
+  @@index([receiverId, read])
+  @@index([conversationId, createdAt])
 }
 
 model Notification {
@@ -460,125 +558,125 @@ model Notification {
   read      Boolean          @default(false)
   createdAt DateTime         @default(now())
 
-  user      User             @relation(fields: [userId], references: [id], onDelete: Cascade)
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
-  @@index([userId])
+  @@index([userId, read, createdAt])
 }
 
 model PaymentExtension {
-  id            String          @id @default(cuid())
+  id           String          @id @default(cuid())
   /// Who's asking (tenant for rent, buyer for escrow, etc.).
-  requesterId   String
+  requesterId  String
   /// Who decides (landlord for rent, seller for escrow, admin for subscription).
-  approverId    String?
+  approverId   String?
   /// Optional unit link for rent extensions.
-  unitId        String?
-  kind          ExtensionKind   @default(rent)
-  amount        Decimal         @db.Decimal(12, 2)
-  currency      String          @default("KES")
-  originalDue   DateTime
+  unitId       String?
+  kind         ExtensionKind   @default(rent)
+  amount       Decimal         @db.Decimal(12, 2)
+  currency     String          @default("KES")
+  originalDue  DateTime
   /// New due date the requester proposes.
-  requestedDue  DateTime
-  reason        String
-  status        ExtensionStatus @default(pending)
-  decisionAt    DateTime?
-  decisionNote  String?
-  createdAt     DateTime        @default(now())
-  updatedAt     DateTime        @updatedAt
+  requestedDue DateTime
+  reason       String
+  status       ExtensionStatus @default(pending)
+  decisionAt   DateTime?
+  decisionNote String?
+  createdAt    DateTime        @default(now())
+  updatedAt    DateTime        @updatedAt
 
-  requester     User            @relation("ExtensionsRequested", fields: [requesterId], references: [id])
-  approver      User?           @relation("ExtensionsApproved", fields: [approverId], references: [id])
+  requester User  @relation("ExtensionsRequested", fields: [requesterId], references: [id])
+  approver  User? @relation("ExtensionsApproved", fields: [approverId], references: [id])
 
   @@index([requesterId, status])
   @@index([approverId, status])
 }
 
 model Subscription {
-  id           String             @id @default(cuid())
-  userId       String
+  id            String             @id @default(cuid())
+  userId        String
   /// Which role this subscription applies to (agent/landlord/buyer/chama).
-  role         UserRole
-  tier         SubscriptionTier
-  status       SubscriptionStatus @default(active)
-  priceKes     Decimal            @db.Decimal(10, 2)
+  role          UserRole
+  tier          SubscriptionTier
+  status        SubscriptionStatus @default(active)
+  priceKes      Decimal            @db.Decimal(10, 2)
   /// Renewal cadence in days (30 default).
-  periodDays   Int                @default(30)
+  periodDays    Int                @default(30)
   /// Auto-renew at expiry.
-  autoRenew    Boolean            @default(true)
-  startedAt    DateTime           @default(now())
-  expiresAt    DateTime
-  cancelledAt  DateTime?
+  autoRenew     Boolean            @default(true)
+  startedAt     DateTime           @default(now())
+  expiresAt     DateTime
+  cancelledAt   DateTime?
   /// Payment method used for the latest charge.
-  paymentMethod PaymentMethod    @default(mpesa)
+  paymentMethod PaymentMethod      @default(mpesa)
   /// Provider receipt reference (M-Pesa code, card auth, bank ref, etc.).
   paymentRef    String?
   /// Legacy M-Pesa receipt — kept for back-compat.
-  mpesaRef     String?
-  createdAt    DateTime           @default(now())
-  updatedAt    DateTime           @updatedAt
+  mpesaRef      String?
+  createdAt     DateTime           @default(now())
+  updatedAt     DateTime           @updatedAt
 
-  user         User               @relation(fields: [userId], references: [id], onDelete: Cascade)
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@unique([userId, role])
   @@index([userId, status])
 }
 
 model Chama {
-  id          String      @id @default(cuid())
-  name        String
-  description String
-  targetKes   Decimal     @db.Decimal(14, 2)
-  monthlyContribution Decimal @db.Decimal(10, 2)
-  status      ChamaStatus @default(active)
-  createdAt   DateTime    @default(now())
-  updatedAt   DateTime    @updatedAt
+  id                  String      @id @default(cuid())
+  name                String
+  description         String
+  targetKes           Decimal     @db.Decimal(14, 2)
+  monthlyContribution Decimal     @db.Decimal(10, 2)
+  status              ChamaStatus @default(active)
+  createdAt           DateTime    @default(now())
+  updatedAt           DateTime    @updatedAt
 
-  members        ChamaMember[]
-  contributions  ChamaContribution[]
-  properties     ChamaProperty[]
+  members       ChamaMember[]
+  contributions ChamaContribution[]
+  properties    ChamaProperty[]
 }
 
 model ChamaMember {
-  id          String    @id @default(cuid())
-  chamaId     String
-  userId      String
-  role        ChamaRole @default(member)
-  shares      Int       @default(1)
-  joinedAt    DateTime  @default(now())
+  id       String    @id @default(cuid())
+  chamaId  String
+  userId   String
+  role     ChamaRole @default(member)
+  shares   Int       @default(1)
+  joinedAt DateTime  @default(now())
 
-  chama       Chama     @relation(fields: [chamaId], references: [id], onDelete: Cascade)
-  user        User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  chama Chama @relation(fields: [chamaId], references: [id], onDelete: Cascade)
+  user  User  @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@unique([chamaId, userId])
   @@index([userId])
 }
 
 model ChamaContribution {
-  id          String        @id @default(cuid())
-  chamaId     String
-  memberId    String
-  amount      Decimal       @db.Decimal(10, 2)
+  id            String        @id @default(cuid())
+  chamaId       String
+  memberId      String
+  amount        Decimal       @db.Decimal(10, 2)
   paymentMethod PaymentMethod @default(mpesa)
-  paymentRef  String?
-  period      String
-  paidAt      DateTime      @default(now())
+  paymentRef    String?
+  period        String
+  paidAt        DateTime      @default(now())
 
-  chama       Chama         @relation(fields: [chamaId], references: [id], onDelete: Cascade)
-  member      User          @relation(fields: [memberId], references: [id])
+  chama  Chama @relation(fields: [chamaId], references: [id], onDelete: Cascade)
+  member User  @relation(fields: [memberId], references: [id])
 
   @@index([chamaId, paidAt])
 }
 
 model ChamaProperty {
-  id          String   @id @default(cuid())
-  chamaId     String
-  title       String
-  address     String
-  costKes     Decimal  @db.Decimal(14, 2)
-  acquiredAt  DateTime @default(now())
-  notes       String?
+  id         String   @id @default(cuid())
+  chamaId    String
+  title      String
+  address    String
+  costKes    Decimal  @db.Decimal(14, 2)
+  acquiredAt DateTime @default(now())
+  notes      String?
 
-  chama       Chama    @relation(fields: [chamaId], references: [id], onDelete: Cascade)
+  chama Chama @relation(fields: [chamaId], references: [id], onDelete: Cascade)
 }
 
 model BlogPost {
@@ -593,4 +691,134 @@ model BlogPost {
   image        String?
   publishedAt  DateTime @default(now())
   readTime     String?
+}
+
+enum AuditAction {
+  user_register
+  user_login
+  user_logout
+  password_change
+  password_reset_request
+  password_reset_complete
+  role_activate
+  role_switch
+  property_create
+  property_update
+  property_delete
+  property_verify
+  escrow_create
+  escrow_update
+  escrow_release
+  rent_payment
+  subscription_create
+  subscription_cancel
+  chama_contribution
+  extension_request
+  extension_decision
+  admin_action
+}
+
+/// Append-only audit trail. Never mutate rows; retention handled by DB job.
+model AuditLog {
+  id         String      @id @default(cuid())
+  userId     String?
+  action     AuditAction
+  entityType String?
+  entityId   String?
+  ip         String?
+  userAgent  String?
+  requestId  String?
+  meta       Json?
+  createdAt  DateTime    @default(now())
+
+  user User? @relation(fields: [userId], references: [id], onDelete: SetNull)
+
+  @@index([userId, createdAt])
+  @@index([entityType, entityId])
+  @@index([action, createdAt])
+}
+
+/// Rotating refresh tokens. Store hash only (never raw). jti = id.
+model RefreshToken {
+  id        String    @id @default(cuid())
+  userId    String
+  tokenHash String    @unique
+  parentId  String?
+  userAgent String?
+  ip        String?
+  expiresAt DateTime
+  revokedAt DateTime?
+  usedAt    DateTime?
+  createdAt DateTime  @default(now())
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId, revokedAt])
+  @@index([expiresAt])
+}
+
+/// Password-reset OTP/token. Store hash only.
+model PasswordReset {
+  id        String    @id @default(cuid())
+  userId    String
+  tokenHash String    @unique
+  expiresAt DateTime
+  usedAt    DateTime?
+  createdAt DateTime  @default(now())
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@index([expiresAt])
+}
+
+enum VerificationStatus {
+  submitted
+  in_review
+  approved
+  rejected
+  needs_more_info
+}
+
+enum VerificationKind {
+  property_title
+  agent_license
+  landlord_ownership
+  kyc_identity
+}
+
+/// Property title-deed / agent-license / KYC verification requests.
+model VerificationRequest {
+  id           String             @id @default(cuid())
+  kind         VerificationKind
+  subjectType  String
+  subjectId    String
+  submitterId  String
+  status       VerificationStatus @default(submitted)
+  documents    String[]
+  notes        String?
+  reviewerId   String?
+  decisionAt   DateTime?
+  decisionNote String?
+  createdAt    DateTime           @default(now())
+  updatedAt    DateTime           @updatedAt
+
+  @@index([kind, status])
+  @@index([subjectType, subjectId])
+  @@index([submitterId])
+}
+
+/// Idempotency guard for financial POSTs. Keyed by user + header.
+model IdempotencyRecord {
+  id         String   @id @default(cuid())
+  userId     String
+  key        String
+  route      String
+  statusCode Int
+  response   Json
+  createdAt  DateTime @default(now())
+  expiresAt  DateTime
+
+  @@unique([userId, key, route])
+  @@index([expiresAt])
 }

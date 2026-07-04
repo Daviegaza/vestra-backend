@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Vestra Bootstrap Launch — Budget Edition</title>
+<style>
+  @page { size: A4; margin: 18mm 15mm; }
+  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; font-size: 10.5pt; line-height: 1.45; color: #1a1a1a; }
+  h1 { font-size: 22pt; color: #059669; border-bottom: 3px solid #059669; padding-bottom: 6pt; margin: 0 0 4pt 0; }
+  h2 { font-size: 14pt; color: #047857; border-bottom: 1px solid #ccc; padding-bottom: 3pt; margin-top: 18pt; page-break-after: avoid; }
+  h3 { font-size: 11.5pt; color: #065f46; margin-top: 12pt; margin-bottom: 4pt; page-break-after: avoid; }
+  h4 { font-size: 10.5pt; margin: 8pt 0 2pt 0; page-break-after: avoid; }
+  p { margin: 3pt 0; }
+  ul, ol { margin: 3pt 0 6pt 18pt; padding: 0; }
+  li { margin: 1.5pt 0; }
+  table { width: 100%; border-collapse: collapse; margin: 6pt 0; font-size: 9.5pt; page-break-inside: avoid; }
+  th, td { border: 1px solid #999; padding: 4pt 6pt; text-align: left; vertical-align: top; }
+  th { background: #d1fae5; font-weight: 600; }
+  tr:nth-child(even) td { background: #f9fafb; }
+  .subtitle { color: #666; font-size: 10pt; margin: 0 0 12pt 0; }
+  .callout { background: #fef3c7; border-left: 4px solid #f59e0b; padding: 6pt 10pt; margin: 8pt 0; font-size: 9.5pt; }
+  .risk { background: #fee2e2; border-left: 4px solid #dc2626; padding: 6pt 10pt; margin: 8pt 0; font-size: 9.5pt; }
+  .info { background: #dbeafe; border-left: 4px solid #2563eb; padding: 6pt 10pt; margin: 8pt 0; font-size: 9.5pt; }
+  .tip { background: #dcfce7; border-left: 4px solid #16a34a; padding: 6pt 10pt; margin: 8pt 0; font-size: 9.5pt; }
+  .money { font-family: "SF Mono", Consolas, monospace; white-space: nowrap; }
+  .critical { color: #dc2626; font-weight: 600; }
+  .high { color: #ea580c; font-weight: 600; }
+  .low { color: #16a34a; font-weight: 600; }
+  .zero { color: #16a34a; font-weight: 700; }
+  .summary-box { background: #ecfdf5; border: 2px solid #059669; padding: 8pt 12pt; margin: 10pt 0; border-radius: 4pt; }
+  .grand-total { background: #059669; color: white; font-weight: 700; }
+  .grand-total td { border-color: #047857; }
+  .step { background: #f0fdf4; border-left: 3px solid #059669; padding: 4pt 8pt; margin: 4pt 0; font-size: 10pt; }
+  .footer-note { font-size: 8.5pt; color: #666; font-style: italic; margin-top: 24pt; border-top: 1px solid #ccc; padding-top: 6pt; }
+</style>
+</head>
+<body>
+
+<h1>Vestra Bootstrap Launch — Budget Edition</h1>
+<p class="subtitle">First-project, minimum-cash launch plan. Founder does most work. Free tiers everywhere. Skip enterprise-grade until revenue justifies. Prepared 2026-07-04.</p>
+
+<div class="summary-box">
+<strong>Bottom line — bootstrap mode.</strong><br>
+<strong>Upfront (0-3 months, first customer live):</strong> <span class="money">~KES 180,000</span> (~USD 1,400).<br>
+<strong>Recurring infra (no salary):</strong> <span class="money">~KES 8,000-12,000/mo</span> (~USD 60-90).<br>
+<strong>Optional survival salary for founder (Nairobi):</strong> <span class="money">KES 80,000-120,000/mo</span>.<br>
+<strong>6-month total burn (solo founder + tiny salary):</strong> <span class="money">KES 700k-1.2M</span> (USD 5,400-9,200).
+</div>
+
+<div class="tip"><strong>The core budget move.</strong> Skip escrow for launch. Launch as a <em>verified-listings + rent-collection-passthrough</em> platform. Escrow needs a bank trust deed (KES 500k-1M + 3-6 months). Add it in Phase 2 once revenue proves the product. Charge landlords KES 1,000 per verified listing and 1% of rent collected — same value prop, no trust account required.</div>
+
+<h2>1. The bootstrap thesis</h2>
+<p>Ship a lean MVP that Kenyan landlords and tenants pay for on day one, using free-tier infrastructure and founder sweat equity. Every expensive gate (bank trust, DPO retainer, insurance, trademark, KYC vendor, marketing spend) is deferred until revenue clears the bar. Two products in v1:</p>
+<ul>
+  <li><strong>Paid verified listings</strong> for landlords + agents. KES 1,000 per 30-day listing, KES 3,000 featured. Founder verifies each listing manually (Ardhisasa search + phone-call landlord identity check).</li>
+  <li><strong>Rent collection as pass-through</strong>. Tenant pays via M-Pesa Paybill; funds route straight to landlord bank account after Vestra's 1% cut. Not escrow — just a rail. Launch this without a trust account.</li>
+</ul>
+<p>Break-even math: <strong>150 listings/mo at KES 1,000 = KES 150k/mo</strong> covers survival + infra. Achievable by month 4-5 with organic marketing.</p>
+
+<h2>2. What you can defer until revenue</h2>
+<table>
+<tr><th>Enterprise item</th><th>Full-plan cost</th><th>Bootstrap defer until</th></tr>
+<tr><td>Partner-bank trust account (escrow)</td><td class="money">KES 500k-1M</td><td>Month 6+ (after 100+ paying users)</td></tr>
+<tr><td>Fractional DPO retainer</td><td class="money">KES 150-300k/mo</td><td>Month 6+ (founder self-serves ODPC first)</td></tr>
+<tr><td>Advocate on retainer</td><td class="money">KES 80-200k/mo</td><td>Month 6+ (one-off drafting only)</td></tr>
+<tr><td>Full insurance suite (PI + D&amp;O + fidelity)</td><td class="money">KES 880k-2.35M/yr</td><td>Month 6+ (cyber-only micro-policy day 1)</td></tr>
+<tr><td>Trademark KIPI (all classes)</td><td class="money">KES 100-250k</td><td>Month 6+ (use TM unregistered mark day 1)</td></tr>
+<tr><td>Smile Identity KYC integration</td><td class="money">KES 25k setup + $0.50/verify</td><td>Month 6+ (manual Huduma ID photo review day 1)</td></tr>
+<tr><td>MapTiler / paid maps</td><td class="money">$25-180/mo</td><td>Month 6+ (OpenStreetMap + Leaflet free day 1)</td></tr>
+<tr><td>Typesense / Meilisearch</td><td class="money">$20-80/mo</td><td>Month 6+ (Postgres FTS handles &lt;5k listings)</td></tr>
+<tr><td>Claude / Cohere / Deepgram AI stack</td><td class="money">$400-2k/mo</td><td>Month 9+ (static FAQ page day 1)</td></tr>
+<tr><td>Cloudflare Bunny.net media pipeline</td><td class="money">$60/mo</td><td>Month 6+ (Cloudflare R2 free tier day 1)</td></tr>
+<tr><td>Registered office / coworking</td><td class="money">KES 40-90k/mo</td><td>Month 6+ (home office day 1 — legal)</td></tr>
+<tr><td>Full-time hires</td><td class="money">KES 350k+/mo each</td><td>Month 4-6 (solo or unpaid co-founder day 1)</td></tr>
+<tr><td>Google Ads / paid marketing</td><td class="money">KES 200-500k/mo</td><td>Month 9+ (organic WhatsApp + FB day 1)</td></tr>
+<tr><td>EAS Production build</td><td class="money">$99/mo</td><td>Month 6+ (local Xcode / Android Studio day 1)</td></tr>
+</table>
+
+<h2>3. What you CANNOT skip (legal walls)</h2>
+<div class="risk"><strong>Hard walls — non-negotiable even in bootstrap.</strong>
+<ul>
+  <li>Register the company (private limited) — <strong>KES 10,650 via eCitizen BRS</strong>. No paying customer without it.</li>
+  <li>Get corporate KRA PIN — free but mandatory to receive money into a business account.</li>
+  <li>ODPC registration as controller + processor — <strong>KES 4,000-8,000</strong>. Legal from user #1.</li>
+  <li>Publish Terms of Service + Privacy Policy before first user signup — advocate one-off drafting <strong>KES 60-120k for bundle</strong>.</li>
+  <li>Never hold escrow funds without partner-bank trust — <strong>keep rent as pass-through only in v1</strong>. Vestra's cut clears within the day; no funds held overnight.</li>
+  <li>Register a business bank account (not personal) to receive company revenue.</li>
+  <li>File nil returns even if pre-revenue — KRA penalty is KES 2,000/return for skipping.</li>
+</ul>
+</div>
+
+<h2>4. Month-by-month spend (solo founder, no external funding)</h2>
+
+<h3>4.1 Month 0 (setup) — upfront</h3>
+<table>
+<tr><th>Item</th><th>Where</th><th>Cost (KES)</th></tr>
+<tr><td>Company registration</td><td>eCitizen BRS</td><td class="money">10,650</td></tr>
+<tr><td>Domain vestra.co.ke (1 year)</td><td>Truehost / Sasahost</td><td class="money">1,500</td></tr>
+<tr><td>Business permit (starter tier, Nairobi county)</td><td>Nairobi County</td><td class="money">15,000</td></tr>
+<tr><td>ODPC registration (controller + processor, micro)</td><td>odpc.go.ke</td><td class="money">8,000</td></tr>
+<tr><td>Corporate KRA PIN + iTax + eTIMS onboarding</td><td>KRA</td><td class="zero">0</td></tr>
+<tr><td>Business bank account (Equity SME digital)</td><td>Equity Bank</td><td class="zero">0</td></tr>
+<tr><td>Advocate one-off bundle (ToS + Privacy + Refund + Tenancy + Landlord Services)</td><td>Solo KE advocate (LinkedIn / Sheria KE / referral)</td><td class="money">80,000</td></tr>
+<tr><td>Cyber liability micro-policy (KES 5M cover)</td><td>Britam / APA online</td><td class="money">25,000</td></tr>
+<tr><td>Google Workspace Business Starter (1 seat, 3 months prepaid)</td><td>Google</td><td class="money">3,000</td></tr>
+<tr><td>Africa's Talking SMS credit + CAK Sender ID (self-service)</td><td>africastalking.com</td><td class="money">8,000</td></tr>
+<tr><td>Hosting: 3 months prepay — Hetzner CX22 (EUR 5/mo)</td><td>Hetzner</td><td class="money">2,000</td></tr>
+<tr><td>Contingency (10%)</td><td>—</td><td class="money">15,000</td></tr>
+<tr class="grand-total"><td><strong>Month 0 upfront total</strong></td><td></td><td class="money">KES 168,150</td></tr>
+</table>
+
+<div class="tip"><strong>How to trim further.</strong> Advocate template bundle can drop to KES 40-50k if you use LawCadi / LexPlansolutions template packs and only pay for a 2-hour review by a Kenyan advocate to KE-localize. Cyber policy can defer to month 3 if you don't take PII beyond email + phone until then.</div>
+
+<h3>4.2 Months 1-3 (build + first customer)</h3>
+<table>
+<tr><th>Category</th><th>Item</th><th>KES/mo</th></tr>
+<tr><td>Hosting</td><td>Hetzner CX22 VPS (4 vCPU / 8 GB / 40 GB SSD)</td><td class="money">700</td></tr>
+<tr><td>Database</td><td>Neon free tier (0.5 GB Postgres + branching)</td><td class="zero">0</td></tr>
+<tr><td>Object storage + CDN</td><td>Cloudflare R2 free (10 GB) + Pages + DNS + Email Routing</td><td class="zero">0</td></tr>
+<tr><td>Email transactional</td><td>Resend free tier (3,000/mo)</td><td class="zero">0</td></tr>
+<tr><td>SMS</td><td>Africa's Talking pay-as-you-go (~500 SMS × KES 0.80)</td><td class="money">400</td></tr>
+<tr><td>Errors + monitoring</td><td>Sentry free (5k errors/mo) + Grafana Cloud free + BetterUptime free</td><td class="zero">0</td></tr>
+<tr><td>Analytics + flags</td><td>PostHog Cloud free (1M events + 1M flags)</td><td class="zero">0</td></tr>
+<tr><td>Push</td><td>OneSignal free (unlimited push)</td><td class="zero">0</td></tr>
+<tr><td>Maps</td><td>OpenStreetMap + Leaflet</td><td class="zero">0</td></tr>
+<tr><td>Search</td><td>Postgres FTS (built-in)</td><td class="zero">0</td></tr>
+<tr><td>Workspace</td><td>Google Workspace 1 seat</td><td class="money">1,000</td></tr>
+<tr><td>Payments</td><td>Daraja sandbox (production shortcode from M2)</td><td class="zero">0</td></tr>
+<tr><td>Business permit (amortized)</td><td>Nairobi County</td><td class="money">1,300</td></tr>
+<tr><td>Cyber policy (amortized)</td><td>Britam / APA</td><td class="money">2,100</td></tr>
+<tr><td>Domain (amortized)</td><td>—</td><td class="money">125</td></tr>
+<tr class="grand-total"><td colspan="2"><strong>Infra subtotal per month</strong></td><td class="money">KES 5,625</td></tr>
+<tr><td>Optional</td><td>Founder survival salary (Nairobi minimum)</td><td class="money">80,000-120,000</td></tr>
+<tr class="grand-total"><td colspan="2"><strong>Monthly all-in (with survival salary)</strong></td><td class="money">KES 85k-125k</td></tr>
+</table>
+
+<h3>4.3 Month 3 — take first M-Pesa payment</h3>
+<table>
+<tr><th>Item</th><th>KES</th></tr>
+<tr><td>Safaricom Daraja production shortcode (Paybill C2B) setup</td><td class="money">25,000</td></tr>
+<tr><td>Daraja monthly maintenance</td><td class="money">3,000/mo</td></tr>
+<tr><td>OR: skip Daraja direct — use IntaSend Paybill (they lend theirs)</td><td class="zero">0 setup</td></tr>
+<tr><td>IntaSend transaction fee (M-Pesa Paybill)</td><td>1.5% of collection</td></tr>
+</table>
+<div class="tip"><strong>Recommended for month 3.</strong> Use <strong>IntaSend's shared Paybill</strong> to avoid the KES 25k Daraja setup and 6-8 week Safaricom timeline. IntaSend gives you a Paybill number, a live dashboard, and 1.5% fee. Switch to your own Daraja shortcode in month 9 when volume justifies. This alone saves KES 25k upfront + 8 weeks.</div>
+
+<h3>4.4 Months 3-6 (revenue phase)</h3>
+<table>
+<tr><th>Item</th><th>KES/mo</th></tr>
+<tr><td>Infra (same as above)</td><td class="money">5,625</td></tr>
+<tr><td>IntaSend fees (assume KES 100k rent collected/mo × 1.5%)</td><td class="money">1,500</td></tr>
+<tr><td>Founder salary</td><td class="money">80,000-120,000</td></tr>
+<tr><td>First contract dev (part-time, KE junior)</td><td class="money">0-80,000</td></tr>
+<tr class="grand-total"><td><strong>Monthly total</strong></td><td class="money">KES 87k-207k</td></tr>
+</table>
+
+<h3>4.5 6-month burn totals</h3>
+<table>
+<tr><th>Scenario</th><th>6-month total</th></tr>
+<tr><td>Founder + no salary, no dev hire (extreme bootstrap)</td><td class="money">KES 210k-230k</td></tr>
+<tr><td>Founder + KES 100k/mo salary, no dev hire</td><td class="money">KES 780k</td></tr>
+<tr><td>Founder + KES 100k salary + part-time dev from M3</td><td class="money">KES 1.02M</td></tr>
+<tr class="grand-total"><td><strong>Bootstrap target</strong></td><td class="money">KES 700k-1.2M</td></tr>
+</table>
+
+<h2>5. Free-tier stack (what to actually use)</h2>
+<table>
+<tr><th>Need</th><th>Free-tier pick</th><th>Limits</th><th>Upgrade trigger</th></tr>
+<tr><td>Compute</td><td>Hetzner CX22 (EUR 5/mo — cheapest reliable)</td><td>4 vCPU / 8 GB / 40 GB SSD</td><td>10k MAU</td></tr>
+<tr><td>Postgres</td><td>Neon free</td><td>0.5 GB storage, 190 compute-hrs/mo</td><td>&gt; 500 MB data</td></tr>
+<tr><td>Storage</td><td>Cloudflare R2 free</td><td>10 GB, 1M reads/mo</td><td>&gt; 5 GB images</td></tr>
+<tr><td>CDN + edge</td><td>Cloudflare free plan</td><td>Unlimited bandwidth, 100k Workers requests/day</td><td>Enterprise scale</td></tr>
+<tr><td>DNS + email routing</td><td>Cloudflare free</td><td>Unlimited domains, email forwarding</td><td>Never</td></tr>
+<tr><td>Frontend hosting</td><td>Cloudflare Pages free</td><td>Unlimited sites, 500 builds/mo</td><td>Never</td></tr>
+<tr><td>Transactional email</td><td>Resend free</td><td>3,000/mo, 100/day</td><td>&gt; 3k users</td></tr>
+<tr><td>SMS</td><td>Africa's Talking pay-as-you-go</td><td>KES 0.80/SMS, no monthly minimum</td><td>—</td></tr>
+<tr><td>Payments (KE)</td><td>IntaSend</td><td>1.5% M-Pesa Paybill</td><td>&gt; KES 5M/mo GMV</td></tr>
+<tr><td>Error tracking</td><td>Sentry free</td><td>5k errors/mo, 10k performance events</td><td>&gt; 5k errors</td></tr>
+<tr><td>Metrics + logs</td><td>Grafana Cloud free</td><td>10k series, 50 GB logs, 14-day retention</td><td>&gt; 50 GB logs</td></tr>
+<tr><td>Uptime monitoring</td><td>BetterStack (Better Uptime) free</td><td>10 monitors, 3-min interval</td><td>&gt; 10 endpoints</td></tr>
+<tr><td>Analytics + flags + replay</td><td>PostHog Cloud free</td><td>1M events + 1M flags + 5k session replays</td><td>&gt; 1M events</td></tr>
+<tr><td>Push notifications</td><td>OneSignal free</td><td>Unlimited web + mobile push</td><td>Never (upgrade only for SMS)</td></tr>
+<tr><td>Maps</td><td>OpenStreetMap + Leaflet</td><td>Free with attribution</td><td>Rate-limit issues → MapTiler Flex $5/mo</td></tr>
+<tr><td>Search</td><td>Postgres FTS (built-in)</td><td>Handles &lt;10k listings comfortably</td><td>&gt; 5k listings + fuzzy typo need</td></tr>
+<tr><td>CI/CD</td><td>GitHub Actions free (public repo)</td><td>2,000 min/mo (private: 3,000)</td><td>Never</td></tr>
+<tr><td>Static analysis</td><td>ESLint + tsc + Renovate</td><td>Free</td><td>Never</td></tr>
+<tr><td>Container registry</td><td>GitHub Container Registry</td><td>Free for public</td><td>Private → pay $0.008/GB</td></tr>
+<tr><td>Backup</td><td>Cloudflare R2 (versioned) + weekly rsync to Hetzner Storage Box</td><td>~KES 400/mo Storage Box 1 TB</td><td>Never</td></tr>
+</table>
+<p><strong>Total free-tier stack monthly:</strong> ~KES 5,000 including Hetzner + Workspace + amortized annual costs.</p>
+
+<h2>6. What to build first (v1 scope)</h2>
+<div class="callout"><strong>Rule.</strong> If a feature does not help you charge a landlord KES 1,000 this month, cut it from v1.</div>
+<h3>Must-ship (weeks 1-8)</h3>
+<ol>
+  <li>Landlord signup + KRA PIN + phone verification (SMS OTP via Africa's Talking)</li>
+  <li>Property listing creation (title, LR number, price, photos, geolocation from phone GPS)</li>
+  <li>Founder-manual verification queue: check Ardhisasa search + phone-call landlord</li>
+  <li>Public listing page + WhatsApp lead capture (tenant clicks → prefilled WA message to landlord + Vestra)</li>
+  <li>Landlord dashboard: listings + leads + payment history</li>
+  <li>Payment via IntaSend shared Paybill (KES 1,000 = 30-day listing, KES 3,000 = featured)</li>
+  <li>Simple admin dashboard for founder</li>
+  <li>ToS + Privacy + Cookie consent banner</li>
+  <li>Password reset via Resend email</li>
+</ol>
+<h3>Ship if time (weeks 9-16)</h3>
+<ol start="10">
+  <li>Tenant signup + save favourites</li>
+  <li>Basic messaging (in-app + email notification)</li>
+  <li>Rent collection pass-through (tenant pays via IntaSend Paybill, Vestra takes 1%, forwards rest to landlord next-day)</li>
+  <li>Landlord monthly rent report (CSV export for KRA MRI self-filing)</li>
+  <li>Capacitor Android build (skip iOS in v1 — no EAS subscription needed)</li>
+</ol>
+<h3>Do NOT build in v1</h3>
+<ul>
+  <li>Escrow (needs bank trust)</li>
+  <li>Full KYC vendor integration (manual Huduma ID review)</li>
+  <li>Geofenced photo verification (founder physically visits first 20 listings)</li>
+  <li>AI concierge (static FAQ page)</li>
+  <li>eRITS Gava Connect (landlord downloads MRI CSV → self-files)</li>
+  <li>eTIMS integration (defer until landlord asks)</li>
+  <li>Ardhisasa API workflow (manual search, screenshot to listing)</li>
+  <li>iOS app (Android + PWA cover 92% of KE mobile market)</li>
+  <li>Diaspora vertical</li>
+  <li>Chama features</li>
+  <li>Agent trust graph v2</li>
+  <li>Meilisearch / RAG search</li>
+  <li>Voice search</li>
+  <li>3D tours</li>
+</ul>
+
+<h2>7. Bootstrap step-by-step (30 numbered actions)</h2>
+
+<h3>Week 1 — company + accounts</h3>
+<div class="step"><strong>1.</strong> Register company on <a href="https://accounts.ecitizen.go.ke">eCitizen BRS</a>. Pick 3 name alternatives ("Vestra", "Vestra Kenya", "Vestra Properties"). Submit memo + articles (BRS templates fine). <strong>KES 10,650. 5-14 working days.</strong></div>
+<div class="step"><strong>2.</strong> While waiting, register domain <strong>vestra.co.ke</strong> via Truehost or Sasahost. <strong>KES 1,500/yr.</strong></div>
+<div class="step"><strong>3.</strong> Set up Cloudflare account, add vestra.co.ke, enable Email Routing (free) → forward founder@vestra.co.ke to your Gmail.</div>
+<div class="step"><strong>4.</strong> Once BRS certificate received: apply for corporate KRA PIN via iTax. <strong>Same day.</strong></div>
+<div class="step"><strong>5.</strong> Open Equity SME business account (or Family Bank / Co-op Bank). Digital onboarding. <strong>Same day.</strong></div>
+<div class="step"><strong>6.</strong> Apply for Nairobi County single business permit. Category: technology / consultancy. <strong>KES 15,000. 3-7 days.</strong></div>
+
+<h3>Week 2 — legal + data protection</h3>
+<div class="step"><strong>7.</strong> Contact one solo KE advocate (LinkedIn "Kenya technology lawyer" or Sheria KE directory). Ask for a fixed-fee bundle: <em>ToS + Privacy Policy + Cookie Notice + Refund Policy + Tenancy Template + Landlord Services Agreement</em>. Aim for KES 60-100k bundle price. <strong>1-2 week turnaround.</strong></div>
+<div class="step"><strong>8.</strong> File ODPC registration as Controller AND Processor at <a href="https://www.odpc.go.ke">odpc.go.ke</a>. Documents needed: BRS certificate, KRA PIN, DPIA summary (write your own — 2 pages: what data, why, retention, subject rights), processing activities list. <strong>KES 8,000 total. 2-4 weeks.</strong></div>
+<div class="step"><strong>9.</strong> Buy cyber liability micro-policy from Britam or APA online. KES 5M cover, targeted at SME tech. <strong>KES 25,000/yr.</strong></div>
+
+<h3>Week 3-4 — tech setup</h3>
+<div class="step"><strong>10.</strong> Provision Hetzner CX22 VPS (Falkenstein). Install Ubuntu 24.04, Node.js, PostgreSQL, Redis, Caddy (auto-HTTPS reverse proxy). <strong>EUR 5/mo.</strong></div>
+<div class="step"><strong>11.</strong> Sign up: Neon (Postgres free), Sentry, Grafana Cloud, PostHog, OneSignal, Resend, BetterStack (uptime). All free tiers.</div>
+<div class="step"><strong>12.</strong> Sign up IntaSend, complete KYC (BRS + KRA PIN + directors' IDs), get sandbox + Paybill.</div>
+<div class="step"><strong>13.</strong> Sign up Africa's Talking, buy KES 5,000 SMS credit, apply for Sender ID "VESTRA" (3-5 days).</div>
+<div class="step"><strong>14.</strong> Deploy staging: Vestra backend on Hetzner, frontend on Cloudflare Pages, DB on Neon, R2 for images, Caddy TLS.</div>
+<div class="step"><strong>15.</strong> Apply Prisma baseline migration on staging DB (run <code>prisma migrate deploy</code>).</div>
+
+<h3>Weeks 5-8 — v1 build</h3>
+<div class="step"><strong>16.</strong> Ship the 9 must-ship features listed above (§6).</div>
+<div class="step"><strong>17.</strong> Publish ToS + Privacy on vestra.co.ke/legal.</div>
+<div class="step"><strong>18.</strong> Post the ODPC-registered badge in footer once granted.</div>
+
+<h3>Weeks 9-12 — first customer</h3>
+<div class="step"><strong>19.</strong> Manually source 20 verified listings (WhatsApp + friends + Kilimani + Kileleshwa landlord walk-in).</div>
+<div class="step"><strong>20.</strong> Charge KES 1,000 per listing. Take payment via IntaSend Paybill.</div>
+<div class="step"><strong>21.</strong> Launch to 3 Kenyan diaspora Facebook groups (US + UK) + 5 Nairobi renter WhatsApp groups. Zero paid ads.</div>
+<div class="step"><strong>22.</strong> First tenant lead → first WhatsApp connect → first paying landlord. Target: <strong>week 12</strong>.</div>
+
+<h3>Months 3-6 — traction phase</h3>
+<div class="step"><strong>23.</strong> Set weekly SEO cadence: 1 suburb guide + 1 rent-market-report post per week. Rank on "houses for rent in [suburb]" long tail.</div>
+<div class="step"><strong>24.</strong> When rent-collection revenue hits KES 200k/mo, apply for own Daraja Paybill (still keep IntaSend as fallback).</div>
+<div class="step"><strong>25.</strong> Hire first part-time dev (KES 80-120k/mo) or offer equity + KES 40k stipend.</div>
+<div class="step"><strong>26.</strong> Approach HFC or NCBA for trust-account discovery meeting. Bring: 6 months revenue evidence, DPO commitment, ToS, DPIA, insurance certificate. Expect 3-6 months to trust deed signing.</div>
+
+<h3>Month 6-9 — trust rail + fundraise</h3>
+<div class="step"><strong>27.</strong> Trust deed signed → launch escrow product v1 (sales only, rent stays pass-through).</div>
+<div class="step"><strong>28.</strong> Retain fractional DPO (KES 150k/mo). Upgrade insurance to include PI + D&O.</div>
+<div class="step"><strong>29.</strong> Draft pre-seed pitch deck. Approach Baobab Network, Antler East Africa, Founders Factory Africa.</div>
+<div class="step"><strong>30.</strong> File trademark at KIPI (KES 40-100k with self-filing or agent). Register Vestra Credit Ltd if planning Rent Advance.</div>
+
+<h2>8. Revenue model to fund the bootstrap</h2>
+<table>
+<tr><th>Product</th><th>Price</th><th>Month 3 target</th><th>Month 6 target</th><th>Month 9 target</th></tr>
+<tr><td>Paid verified listing (30-day)</td><td class="money">KES 1,000</td><td>20 listings</td><td>150 listings</td><td>400 listings</td></tr>
+<tr><td>Featured listing upgrade (30-day)</td><td class="money">KES 3,000</td><td>5 upgrades</td><td>30 upgrades</td><td>80 upgrades</td></tr>
+<tr><td>Rent collection pass-through</td><td>1% of rent</td><td>KES 5k GMV</td><td>KES 100k GMV</td><td>KES 500k GMV</td></tr>
+<tr><td>Agent verified badge (monthly)</td><td class="money">KES 1,500/mo</td><td>0</td><td>10 agents</td><td>40 agents</td></tr>
+<tr class="grand-total"><td colspan="2"><strong>Monthly revenue target</strong></td><td class="money">KES 35,050</td><td class="money">KES 256,000</td><td class="money">KES 690,000</td></tr>
+</table>
+<p><strong>Break-even</strong> against KES 100k/mo founder salary + KES 10k infra: around <strong>month 4-5</strong>. Break-even against KES 200k monthly all-in (founder + part-time dev): <strong>month 6-7</strong>.</p>
+
+<h2>9. Bootstrap risks + mitigations</h2>
+<div class="risk"><strong>ODPC delays.</strong> Application backlog can stretch 4-8 weeks. <em>Mitigation:</em> submit ODPC application day 1; launch to closed beta only (10 users you know personally) until certificate arrives.</div>
+<div class="risk"><strong>Legal shortcut backfires.</strong> Cheap advocate ships weak ToS with no limitation of liability. <em>Mitigation:</em> use LawCadi templates as base, ask advocate for a 2-hour review and localization for KES 20-30k instead of full drafting.</div>
+<div class="risk"><strong>Rent pass-through drift into escrow.</strong> If Vestra holds rent overnight while landlord provides bank details, it looks like escrow to CBK. <em>Mitigation:</em> automate next-day payout to landlord's bank via IntaSend PesaLink; document as pass-through processor, not custodian.</div>
+<div class="risk"><strong>Founder burnout.</strong> Solo bootstrapping while doing on-site verification is a real risk. <em>Mitigation:</em> cap founder verifications at 40 listings/mo; hire a KES 30k/mo intern for verification-runs by month 3.</div>
+<div class="risk"><strong>IntaSend outage.</strong> Single payment provider = single point of failure. <em>Mitigation:</em> add manual Buy-Goods number as fallback path in listing UI; move to Daraja direct by month 6.</div>
+
+<h2>10. When to stop bootstrapping (upgrade triggers)</h2>
+<table>
+<tr><th>Signal</th><th>Upgrade</th><th>Approx cost/mo added</th></tr>
+<tr><td>&gt; 100 paying landlords</td><td>Fractional DPO + PI insurance</td><td class="money">+KES 200k</td></tr>
+<tr><td>&gt; KES 500k/mo rent GMV</td><td>Bank trust deed process starts (still bootstrap the rest)</td><td class="money">+KES 20k</td></tr>
+<tr><td>&gt; 5,000 monthly active users</td><td>Move from Neon free → Neon Scale ($19/mo)</td><td class="money">+KES 2.5k</td></tr>
+<tr><td>&gt; 10 GB image library</td><td>Cloudflare R2 paid</td><td class="money">+KES 2k</td></tr>
+<tr><td>First diaspora US inquiry</td><td>Smile Identity KYC integration</td><td class="money">+KES 60k (usage-based)</td></tr>
+<tr><td>&gt; 5,000 SMS/mo</td><td>Africa's Talking pre-paid bulk credit</td><td class="money">+KES 4k</td></tr>
+<tr><td>Any signup for landlord SaaS tier</td><td>eRITS Gava Connect integration</td><td>engineer weeks 3-4</td></tr>
+<tr><td>Public liability incident occurs on-site</td><td>Bind PI + Public Liability policies</td><td class="money">+KES 30k</td></tr>
+</table>
+
+<h2>11. Grand total (bootstrap)</h2>
+
+<table>
+<tr><th>Category</th><th>Amount (KES)</th></tr>
+<tr><td>Month 0 upfront (all setup)</td><td class="money">168,150</td></tr>
+<tr><td>Months 1-6 infra (KES 5.6k × 6)</td><td class="money">33,750</td></tr>
+<tr><td>Daraja shortcode setup + maintenance (M3-6)</td><td class="money">37,000</td></tr>
+<tr><td>Founder salary (KES 100k × 6)</td><td class="money">600,000</td></tr>
+<tr><td>Part-time dev (KES 80k × 3 from M4)</td><td class="money">240,000</td></tr>
+<tr><td>Ardhisasa search fees (50 listings × KES 550)</td><td class="money">27,500</td></tr>
+<tr><td>Content + basic design (Canva + stock KES 15k)</td><td class="money">15,000</td></tr>
+<tr><td>Contingency 10%</td><td class="money">112,000</td></tr>
+<tr class="grand-total"><td><strong>6-month all-in (moderate scenario)</strong></td><td class="money">KES 1,233,400</td></tr>
+<tr class="grand-total"><td><strong>USD equivalent (@ 130)</strong></td><td class="money">USD 9,500</td></tr>
+</table>
+
+<h3>Extreme bootstrap variant</h3>
+<table>
+<tr><th>Scenario</th><th>KES 6-month total</th></tr>
+<tr><td>Solo founder, no salary, no hire, live off savings, home office, home internet</td><td class="money">~KES 240,000</td></tr>
+<tr><td>Solo founder + KES 60k stipend, home office</td><td class="money">~KES 590,000</td></tr>
+<tr><td>Founder + KES 100k salary + no dev hire</td><td class="money">~KES 810,000</td></tr>
+<tr><td>Founder + KES 100k + part-time dev (moderate — recommended)</td><td class="money">~KES 1,230,000</td></tr>
+</table>
+
+<div class="summary-box">
+<strong>Recommended bootstrap ask: KES 1.2-1.5M</strong> for 6 months of runway. Sources: personal savings, friends &amp; family SAFE at KES 200-300M cap, or a small pre-seed cheque (Baobab / MEST / Founders Factory).<br><br>
+Break-even against this burn is <strong>month 6-8</strong> at organic-only growth. If revenue tracks the model in §8, no further raise is required to reach seed metrics.
+</div>
+
+<h2>12. Bootstrap versus full plan — side by side</h2>
+
+<table>
+<tr><th>Item</th><th>Full plan</th><th>Bootstrap</th><th>Saving</th></tr>
+<tr><td>Company + SHA + ESOP</td><td class="money">KES 250-700k</td><td class="money">KES 10.6k</td><td class="money">~99%</td></tr>
+<tr><td>ODPC + DPO first 6mo</td><td class="money">KES 1.1-2M</td><td class="money">KES 8k</td><td class="money">~99%</td></tr>
+<tr><td>Partner-bank trust</td><td class="money">KES 500k-1M</td><td class="zero">Deferred</td><td class="money">100%</td></tr>
+<tr><td>Insurance (full suite)</td><td class="money">KES 880k-2.35M/yr</td><td class="money">KES 25k (cyber only)</td><td class="money">~97%</td></tr>
+<tr><td>Trademark</td><td class="money">KES 100-250k</td><td class="zero">Deferred</td><td class="money">100%</td></tr>
+<tr><td>Advocate retainer 6mo</td><td class="money">KES 480k-1.2M</td><td class="money">KES 80k (one-off)</td><td class="money">~87%</td></tr>
+<tr><td>Accountant 6mo</td><td class="money">KES 150-480k</td><td class="zero">DIY iTax</td><td class="money">100%</td></tr>
+<tr><td>Office / coworking 6mo</td><td class="money">KES 240-540k</td><td class="zero">Home office</td><td class="money">100%</td></tr>
+<tr><td>Infrastructure 6mo</td><td class="money">KES 470k-1.7M</td><td class="money">KES 35k</td><td class="money">~95%</td></tr>
+<tr><td>Marketing 6mo</td><td class="money">KES 1.5-4M</td><td class="money">KES 15k (Canva)</td><td class="money">~99%</td></tr>
+<tr><td>Payroll (dev team) 6mo</td><td class="money">KES 6-10M</td><td class="money">KES 240k</td><td class="money">~97%</td></tr>
+<tr><td>Founder salary 6mo</td><td class="money">KES 1.5M</td><td class="money">KES 600k</td><td class="money">~60%</td></tr>
+<tr class="grand-total"><td><strong>6-month all-in</strong></td><td class="money">KES 12.8-26M</td><td class="money">KES 1.0-1.5M</td><td class="money">~92%</td></tr>
+</table>
+
+<h2>13. The single most important rule</h2>
+<div class="callout">
+<strong>Every KES you spend before revenue = 30-90 days of runway lost.</strong><br><br>
+Say NO to every vendor pitch until <strong>month 6</strong>. Say NO to hiring a co-founder before you have 20 paying landlords. Say NO to fancy design system before you have 100 tenants using the app.<br><br>
+The audit + strategy documents already produced (VESTRA_STRATEGY_2026.md + 5 research streams + full-plan checklist) tell you exactly what "good" looks like at scale. Ignore 80% of them for the first 6 months. Ship a scrappy verified-listings + rent-passthrough MVP, take money, then upgrade one component at a time as revenue clears each cost.
+</div>
+
+<p class="footer-note">Prepared 2026-07-04. Costs are estimates for a bootstrap solo/small-team launch in Nairobi, Kenya. Actual figures depend on your negotiation with each vendor + your personal cost of living. Not legal or financial advice — always retain a Kenyan advocate for the ToS/Privacy bundle and a certified accountant before your first VAT return. Companion documents: VESTRA_LAUNCH_CHECKLIST.pdf (full enterprise plan), VESTRA_STRATEGY_2026.md, research/ folder.</p>
+
+</body>
+</html>
